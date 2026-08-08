@@ -12,7 +12,7 @@
     <script src="assets/js/main.js" defer></script>
 </head>
 
-<body id="home"> <!-- ID para o link de navegação -->
+<body id="home"> <!-- style="background-color: black;"> -->   <!-- ID para o link de navegação -->
     <nav> <!-- Barra de navegação -->
         <div class="logo"> <!-- Logo do site -->
             <a href="index.html"> <!-- Link para a página inicial -->
@@ -24,7 +24,7 @@
             <li><a href="#home">Home</a></li> 
             <li><a href="#servicos">Serviços</a></li>
             <li><a href="#comprar">Comprar</a></li>
-            <li><a href="#wise-ia">Wise IA</a></li>
+            <li><a href="#wiseia">Wise IA</a></li>
             <li><a href="#artigos">Artigos</a></li>
             <li><a href="#contato">Contato</a></li>
         </ul>
@@ -36,7 +36,7 @@
     </nav>
     <main>
 
-        <section class="banner"> <!-- Banner do site -->
+        <section class="banner1"> <!-- Primeiro Banner do site -->
             <img src="assets/images/PRIMEIRA_FOTO.png" alt="Banner CarWise">
         </section>
 
@@ -47,26 +47,131 @@
             <input type="text" placeholder="Buscar por">
         </form>
 
-        <section class="serviços"> <!-- Seção de serviços -->
+        <section id="servicos" class="serviços"> <!-- Seção de serviços -->
             <h1>Serviços</h1>
 
             <div class="servico_1">
                 <img src="assets/images/servico_1.png" alt="Serviços CarWise">
-                <h2>Manuntenção</h2>
+                <p>Manuntenção</p>
             </div>
 
             <div class="servico_2">
                 <img src="assets/images/servico_2.png" alt="Serviços CarWise">
-                <h2>Limpeza</h2>    
+                <p>Limpeza</p>
             </div>
 
             <div class="servico_3">
                 <img src="assets/images/servico_3.png" alt="Serviços CarWise">
-                <h2>Ferramentas</h2>
+                <p>Ferramentas</p>
+            </div>
+        </section>
+
+        <section class="banner2"> <!-- Segundo Banner do site -->
+            <img src="assets/images/banner2.png" alt="Banner CarWise">
+        </section>
+
+        <section id="comprar" class="Catalogo"> <!-- Catálogo de modelos mais buscados -->
+            <ul class="modelos_buscados"> <!-- modelos mais buscados -->
+                <h2>Modelos mais buscados</h2>
+                <li><p>SUV</p></li>
+                <li><p>SEDAN</p></li>
+                <li><p>HATCH</p></li>
+                <li><p>COUPE</p></li>
+                <li><p>PICKUP</p></li>
+            </ul>
+            <div class="lamborghini"> <!-- opção Lamborghini -->
+                <img src="assets/images/lamborghini_logo.png" alt="Lamborghini">
+                <img src="assets/images/lamborghini_car.png" alt="Lamborghini">
+                <p>Lamborghini Urus</p> 
             </div>
 
+            <div class="toyota"> <!-- opção Toyota -->
+                <img src="assets/images/toyota_logo.png" alt="Toyota"> 
+                <img src="assets/images/toyota_car.png" alt="Toyota">
+                <p>Toyota SW4</p> 
+            </div>
+
+            <div class="hyundai"> <!-- opção Hyundai -->
+                <img src="assets/images/hyundai_logo.png" alt="Hyundai">
+                <img src="assets/images/hyundai_car.png" alt="Hyundai">
+                <p>Hyundai Tucson</p> 
+            </div>  
+        </section>
+
+        <hr>
+
+        <section id="wiseia" class="wiseAi"> <!-- Seção Wise IA -->
+            <h3>OPA!</h3> 
+            <p>O seu carro quebrou?</p>
+            <p>O WISE RESOLVE PARA VOCÊ!</p>
+
+            <ul> <!-- Lista de funcionalidades do Wise IA -->
+                <li>Analisa seu caso.</li>
+                <li>Te entrega uma possível causa e solução.</li>
+                <li>Localiza as oficinas mais perto de você!</li>
+            </ul>
+            
+            <img src="assets/images/wise_man.png" alt="Wise IA">
+        </section>
+
+        <section id="artigos" class="artigos"> <!-- Seção de Artigos -->
+
+            <h4>Artigos</h4>
+
+            <div class="artigo1">
+                <img src="assets/images/art1.png" alt="Artigo 1">
+                <p>Carros mais vendidos no Brasil em julho — dia 30</p>
+                <p>julho 30, 2026</p>
+            </div>
+
+            <div class="artigo2">
+                <img src="assets/images/art2.png" alt="Artigo 2">
+                <p>SUVs mais vendidos no Brasil: Top 5 de Agosto</p>
+                <p>agosto 6, 2026</p>
+            </div>
+
+            <div class="artigo3">
+                <img src="assets/images/art3.png" alt="Artigo 3">
+                <p>Toyota lucra R$ 26.540 por carro vendido no Q1 2027</p> 
+                <p>Julho 27, 2026</p>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="contato" class="contato"> <!-- Seção de Contato -->
+            <h5>Contato</h5>
+            <div class="secao1">
+
+                <div class="instagram">
+                    <img src="assets/images/intagram_logo.webp" alt="logo Instagram">
+                    <p>@carwise</p>
+                </div>
+
+                <hr>
+
+                <div class="whatsapp">
+                    <img src="assets/images/whatsapp_logo.png" alt="logo WhatsApp">
+                    <p>11 99X52-XXXX</p>
+                </div>
+
+                <hr>
+
+                <div class="gmail">
+                    <img src="assets/images/gmail.logo.png" alt="logo Gmail">
+                    <p>carwise@gmail.com</p>
+                </div>
+
+            </div>
+
+            <div class="linha-vertical"></div>
+
+            <div class="secao2">
+                <h6>FUNCIONAMENTO</h6>
+                <p>Seg a Sáb 9h às 18h.</p>
+                <p>Av. Mecanic, 2026 - Jardim Car</p>
+            </div>
         </section>
     </main>
 </body>
-
 </html>
