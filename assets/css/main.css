@@ -1,3 +1,55 @@
-h3 {
-    color: blue;
+* { /* aplica regra a todos os elementos */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+html, body { /* esconder barra de rolagem horizontal*/
+    overflow-x: hidden;
+}
+
+#home {
+    background-color: black;
+}
+
+nav {
+    background-color: gray;
+    position:fixed;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 7%;
+    align-items: center; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.644);
+    Width: 100%;
+    height: 80px;
+    text-align: center;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+}
+.nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    gap: 5vw;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+}
+
+.logo a {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
