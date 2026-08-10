@@ -10,12 +10,11 @@ html, body { /* esconder barra de rolagem horizontal*/
 }
 
 #home {
-    background-color: black;
+    background-color: #151313;
 }
 
-nav {
+nav { /* Se o vs pedir pra você colocar position:fixed aqui não escute!!!!!! */
     background-color: gray;
-    position:fixed;
     display: flex;
     justify-content: space-between;
     padding: 0 7%;
@@ -24,16 +23,70 @@ nav {
     Width: 100%;
     height: 80px;
     text-align: center;
+    z-index: 2;
+}
+
+.top_navbar {
+    background-color: gray;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 7%;
+    align-items: center; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.644);
+    width: 100%;
+    height: 80px;
+    text-align: center;
     top: 0px;
     left: 0px;
     z-index: 2;
 }
+
+.end_nav_bar {
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    padding: 0 7%;
+    align-items: center; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.644);
+    width: 100%;
+    height: 80px;
+    text-align: center;
+    z-index: 2;
+}
+
 .nav-links {
     display: flex;
     justify-content: center;
     align-items: center;
     list-style: none;
     gap: 5vw;
+}
+
+.menu-button { /* Estilo do botão do menu */
+    display: none;
+}
+
+.menu-icon { /* Estilo do ícone do menu */
+    width: 35px;
+    height: 35px;
+}
+
+@media (max-width: 1245px) { /* Estilos para telas com largura máxima de 1245px */
+    .nav-links,
+    .login {
+        display: none;
+    }
+
+    .menu-button {
+        display: block;
+        background: transparent;
+        border: none;
+    }
+
+    .end_nav_bar {
+        display: none;
+    }
 }
 
 a {

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CarWise</title>
     <link rel="stylesheet" href="assets/css/main.css">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
 </head>
 
 <body id="home"> <!-- style="background-color: black;"> -->   <!-- ID para o link de navegação -->
-    <nav> <!-- Barra de navegação -->
+    <nav class="top_navbar"> <!-- Barra de navegação -->
         <div class="logo"> <!-- Logo do site -->
             <a href="index.html"> <!-- Link para a página inicial -->
                 <img src="assets/images/MARCA.png" alt="Logo CarWise" class="logo">
@@ -38,6 +38,11 @@
             <img src="assets/images/user_icon.png" alt="Login" class="login-icon">
             <a href="login.html">Login</a>
         </div>
+
+        <button class="menu-button" type="button" aria-label="Abrir menu"> <!-- Botão para abrir o menu em telas menores-->
+            <img src="assets/images/menu_icon.png" alt="Menu" class="menu-icon"> <!-- pessoal do back me perdoem -->
+        </button>
+
     </nav>
     <main>
 
@@ -149,21 +154,21 @@
             <div class="secao1">
 
                 <div class="instagram">
-                    <img src="assets/images/intagram_logo.webp" alt="logo Instagram">
+                    <img src="assets/images/instagram.png" alt="logo Instagram">
                     <p>@carwise</p>
                 </div>
 
                 <hr>
 
                 <div class="whatsapp">
-                    <img src="assets/images/whatsapp_logo.png" alt="logo WhatsApp">
+                    <img src="assets/images/whatsapp.png" alt="logo WhatsApp">
                     <p>11 99X52-XXXX</p>
                 </div>
 
                 <hr>
 
                 <div class="gmail">
-                    <img src="assets/images/Gmail-Logo.wine.png" alt="logo Gmail">
+                    <img src="assets/images/o-email.png" alt="logo Gmail">
                     <p>carwise@gmail.com</p>
                 </div>
 
@@ -177,6 +182,40 @@
                 <p>Av. Mecanic, 2026 - Jardim Car</p>
             </div>
         </section>
+
+        <hr>
+
+        <section class="infos"> <!-- Seção de informações adicionais -->
+            <img src="assets/images/bannerinfo.png" alt="banner info">
+            <ul>
+                <li>Canal de denúncias</li>
+                <li>Código de conduta</li>
+                <li>Código de Conduta Fornecedores</li>
+                <li>Código defesa do consumidor</li>
+                <li>Gerenciamento de cookies</li>
+                <li> Termos de Uso e Política de privacidade</li>
+                <li>LGPD</li>
+                <li>Cartilha LGPD</li>
+                <li>Relatório de Transparência</li>
+                <li>Segurança</li>
+                <li>Quem somos</li>
+                <li>Trabalhe com a gente</li>
+                <li>Mapa do site</li>
+            </ul>
+        </section>
     </main>
+     <footer> <!-- Rodapé do site -->
+            <nav  class="end_nav_bar"> <!-- Barra de navegação final -->
+                <ul class="nav-links"> <!-- Links de navegação -->
+                    <li><a href="#home">Home</a></li> 
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#comprar">Comprar</a></li>
+                    <li><a href="#wiseia">Wise IA</a></li>
+                    <li><a href="#artigos">Artigos</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+            <p>© 2026 CarWise. Todos os direitos reservados.</p> </footer>
+        </footer>
 </body>
 </html>
