@@ -20,6 +20,7 @@ formCadas.addEventListener("submit", function (event) { // ele iriei verficar o 
 })
 
 formLogin.addEventListener("submit", function (event) { 
+event.preventDefault(); // não deixa carregar a página
 
 // Pego as informas salvas no "banco de dados local"
 const nome_cadastrado =  localStorage.getItem("nome");
