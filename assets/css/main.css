@@ -7,6 +7,7 @@
 
 html, body { /* esconder barra de rolagem horizontal*/
     overflow-x: hidden;
+    padding: 20px 30px;
 }
 
 #home {
@@ -124,9 +125,55 @@ a {
     gap: 10px;
 }
 
+.banner1 {
+    display: flex;
+    justify-content: left;
+    margin-top: 150px;
+}
+
+.banner1 div {
+    margin-right: 40px;
+}
+
+.banner1 div h1 {
+    color: #181818;
+    font-size: 100px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.banner1 div p {
+    color: rgb(85, 84, 84);
+    font-size: 30px;
+    margin-top: 12px;
+}
+
 .banner1 img {
-    width: 50%;
-    height: 50%;
+    width: 45%;
+    height: 45%;
+    opacity: 75%;
+}
+
+.banner1 button {
+    text-decoration: none;
+    padding: 15px 30px;
+    font-size: 20px;
+    margin-top: 40px;
+    border-radius: 60px;
+
+}
+
+.banner1-explorar button{
+    color: white;
+    background-color: #257cff;
+    border: 1px solid #257cff;
+    box-shadow: #000000;
+}
+
+.banner1-saibamais button {
+    color: black;
+    background-color: transparent;
+    border: 2px solid rgb(156, 156, 156);
+    box-shadow: #000000;
 }
 
 .search-bar {
@@ -164,19 +211,6 @@ a {
 
 .search-bar input::placeholder {
     color: white;
-}
-
-h1 {
-    color: black;
-    font-size: 100px;
-    text-align: left;
-    margin-top: 250px;
-}
-
-.banner1 p {
-    color: black;
-    font-size: 35px;
-    text-align: left;
 }
 
 .serviços {
