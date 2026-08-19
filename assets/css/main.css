@@ -27,7 +27,7 @@ nav { /* Se o vs pedir pra você colocar position:fixed aqui não escute!!!!!! *
 }
 
 .top_navbar {
-    background-color: gray;
+    background-color: whitesmoke;
     position: fixed;
     display: flex;
     justify-content: space-between;
@@ -63,6 +63,23 @@ nav { /* Se o vs pedir pra você colocar position:fixed aqui não escute!!!!!! *
     gap: 5vw;
 }
 
+.login a button {
+    border: 1px solid #000000;
+    border-radius: 60px;
+    padding: 10px 30px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.login-cadastrar button {
+    background-color: transparent;
+}
+
+.login-entrar button {
+    background-color: black;
+    color: white;
+}
+
 .menu-button { /* Estilo do botão do menu */
     display: none;
 }
@@ -91,7 +108,7 @@ nav { /* Se o vs pedir pra você colocar position:fixed aqui não escute!!!!!! *
 
 a {
     text-decoration: none;
-    color: white;
+    color: black;
     font-size: 20px;
 }
 
@@ -108,8 +125,8 @@ a {
 }
 
 .banner1 img {
-    width: 100%;
-    height: 100%;
+    width: 50%;
+    height: 50%;
 }
 
 .search-bar {
@@ -150,11 +167,16 @@ a {
 }
 
 h1 {
-    color: white;
-    font-size: 120px;
-    text-shadow: 0px 0px 50px #a70ad6;
-    text-align: center;
-    margin-top: 350px;
+    color: black;
+    font-size: 100px;
+    text-align: left;
+    margin-top: 250px;
+}
+
+.banner1 p {
+    color: black;
+    font-size: 35px;
+    text-align: left;
 }
 
 .serviços {
