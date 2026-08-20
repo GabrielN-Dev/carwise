@@ -7,6 +7,9 @@
 
 html, body { /* esconder barra de rolagem horizontal*/
     overflow-x: hidden;
+}
+
+section {
     padding: 20px 30px;
 }
 
@@ -70,6 +73,13 @@ nav { /* Se o vs pedir pra você colocar position:fixed aqui não escute!!!!!! *
     padding: 10px 30px;
     text-decoration: none;
     font-size: 20px;
+}
+
+.login a button:hover {
+    background-color: #257cff;
+    border-color: #257cff;
+    color: white;
+    cursor: pointer;
 }
 
 .login-cadastrar button {
@@ -162,11 +172,18 @@ a {
 
 }
 
-.banner1-explorar button{
+.banner1-explorar button {
     color: white;
     background-color: #257cff;
     border: 1px solid #257cff;
     box-shadow: #000000;
+}
+
+.banner1-explorar button:hover {
+    background-color: darkblue;
+    border-color: darkblue;
+    color: white;
+    cursor: pointer;
 }
 
 .banner1-saibamais button {
@@ -176,59 +193,105 @@ a {
     box-shadow: #000000;
 }
 
-.search-bar {
-    position: relative;
-    max-width: 1000px;
-    margin: 30px auto 0;
-    margin-top: 160px;
-    display: flex;
-    align-items: center;
-    background: #737373;
-    border: 2px solid #0c007B;
-    border-radius: 999px;
-    overflow: hidden;
+.banner1-saibamais button:hover {
+    background-color: #257cff;
+    border-color: #257cff;
+    color: white;
+    cursor: pointer;
 }
 
-.search-button {
-    width: 72px;
-    height: 72px;
-    border: none;
-    background: transparent;
+.stock {
+    background-color: gainsboro;
+    display: block;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    padding: 100px 7%; 
+    margin-top: 120px;
+    text-align: left;
+    position: relative;
+}
+
+#estoque {
+    color: #257cff;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stock h2 {
+    text-align: left;
+    margin-top: 10px;
+    font-size: 40px;
+    color: #181818;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.stock a {
+    float: right;
+    margin-right: 30px;
+    color: #257cff;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.stock_cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 25px;
+    width: 100%;
+    margin-top: 40px;
+}
+
+.stock_car_1, .stock_car_2, .stock_car_3 {
+    position: relative;
+    flex: 1 1 30%;
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.stock_car_1 img, .stock_car_2 img, .stock_car_3 img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.car_name {
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}
+
+.car_price {
+    margin-top: 5px;
+    font-size: 16px;
+    color: rgb(85, 84, 84);
+}
+
+.botao_add {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid rgb(220, 220, 220);
+    background-color: white;
+    font-size: 22px;
+    color: #181818;
     cursor: pointer;
+    display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.search-bar input {
-    flex: 1;
-    height: 72px;
-    border: none;
-    outline: none;
-    background: transparent;
-    color: #fff;
-    font-size: 25px;
-}
-
-.search-bar input::placeholder {
+.botao_add:hover {
+    background-color: #257cff;
+    border-color: #257cff;
     color: white;
-}
-
-.serviços {
-    color: white;
-    font-size: 50px;
-    text-align: center;
-}
-
-.servico_1, .servico_2, .servico_3 {
-    display: inline-block;
-    width: 300px;
-    height: 300px;
-    margin: 100px;
-}
-
-.servico_1 img, .servico_2 img, .servico_3 img {
-    width: 110%;
-    height: auto; /* Mantém a proporção da imagem para não distorcer */
-    object-fit: contain; /* Garante que a imagem se ajuste bem dentro do espaço */
-    margin-bottom: 15px;
 }
