@@ -1,4 +1,6 @@
-* { /* aplica regra a todos os elementos */
+/* ===================== RESET E BASE ===================== */
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -14,8 +16,8 @@ button {
     font: inherit;
 }
 
-html, body { /* esconder barra de rolagem horizontal*/
-    overflow-x: hidden;
+html, body {
+    overflow-x: hidden; /* esconde a barra de rolagem horizontal */
 }
 
 section {
@@ -26,12 +28,21 @@ section {
     background-color: #FFFF;
 }
 
-nav { /* Se o vs pedir pra você colocar position:fixed aqui não escute!!!!!! */
+a {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+/* ===================== CABEÇALHO / NAVBAR ===================== */
+
+nav {
+    /* Se o vs pedir pra você colocar position:fixed aqui não escute!!!!!! */
     background-color: gray;
     display: flex;
     justify-content: space-between;
     padding: 0 7%;
-    align-items: center; 
+    align-items: center;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.644);
     Width: 100%;
     height: 80px;
@@ -45,7 +56,7 @@ nav { /* Se o vs pedir pra você colocar position:fixed aqui não escute!!!!!! *
     display: flex;
     justify-content: space-between;
     padding: 0 7%;
-    align-items: center; 
+    align-items: center;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.644);
     width: 100%;
     height: 80px;
@@ -60,7 +71,7 @@ nav { /* Se o vs pedir pra você colocar position:fixed aqui não escute!!!!!! *
     display: flex;
     justify-content: center;
     padding: 0 7%;
-    align-items: center; 
+    align-items: center;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.644);
     width: 100%;
     height: 80px;
@@ -100,16 +111,16 @@ nav { /* Se o vs pedir pra você colocar position:fixed aqui não escute!!!!!! *
     color: white;
 }
 
-.menu-button { /* Estilo do botão do menu */
+.menu-button {
     display: none;
 }
 
-.menu-icon { /* Estilo do ícone do menu */
+.menu-icon {
     width: 35px;
     height: 35px;
 }
 
-@media (max-width: 1245px) { /* Estilos para telas com largura máxima de 1245px */
+@media (max-width: 1245px) {
     .nav-links, .login {
         display: none;
     }
@@ -123,12 +134,6 @@ nav { /* Se o vs pedir pra você colocar position:fixed aqui não escute!!!!!! *
     .end_nav_bar {
         display: none;
     }
-}
-
-a {
-    text-decoration: none;
-    color: black;
-    font-size: 20px;
 }
 
 .top_navbar .logotipo {
@@ -146,6 +151,8 @@ a {
     display: flex;
     align-items: center;
 }
+
+/* ===================== BANNER PRINCIPAL ===================== */
 
 .banner1 {
     display: flex;
@@ -182,7 +189,6 @@ a {
     font-size: 20px;
     margin-top: 40px;
     border-radius: 60px;
-
 }
 
 .banner1-explorar button {
@@ -213,12 +219,14 @@ a {
     cursor: pointer;
 }
 
+/* ===================== ESTOQUE (VITRINE DE CARROS) ===================== */
+
 .stock {
     background-color: gainsboro;
     display: block;
     width: 100vw;
     margin-left: calc(-50vw + 50%);
-    padding: 100px 7%; 
+    padding: 100px 7%;
     margin-top: 120px;
     text-align: left;
     position: relative;
@@ -237,7 +245,6 @@ a {
     margin-top: 10px;
     font-size: 40px;
     color: #181818;
-    margin-top: 10px;
     display: inline-block;
 }
 
@@ -309,6 +316,8 @@ a {
     color: white;
 }
 
+/* ===================== SEÇÃO WISE IA ===================== */
+
 .wiseAi {
     background-color: #f0f1f5;
     width: 100vw;
@@ -320,6 +329,224 @@ a {
     flex-wrap: wrap;
     padding: 80px 7%;
 }
+
+/* -------- Mockup do celular -------- */
+
+#phone {
+    width: 280px;
+    height: 560px;
+    background-color: white;
+    border: 10px solid #e5e5e5;
+    border-radius: 40px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    padding: 20px 15px;
+    position: relative;
+}
+
+.app_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.app_header h1 {
+    font-size: 15px;
+    font-weight: bold;
+    color: #181818;
+}
+
+.menu_icon img {
+    width: 18px;
+    height: 18px;
+}
+
+#icon_container {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: #257cff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#icon_container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* -------- Balões do chat -------- */
+
+#chat {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+#msg1 {
+    align-self: flex-end;
+    background-color: #257cff;
+    color: white;
+    font-size: 13px;
+    line-height: 1.4;
+    padding: 12px 15px;
+    border-radius: 15px 15px 2px 15px;
+    max-width: 80%;
+}
+
+#msg2 {
+    align-self: flex-start;
+    background-color: #eef0f5;
+    color: #444444;
+    font-size: 13px;
+    line-height: 1.4;
+    padding: 12px 15px;
+    border-radius: 15px 15px 15px 2px;
+    max-width: 90%;
+}
+
+/* -------- Campo de input falso -------- */
+
+#fake_input {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 30px;
+    padding: 10px 15px;
+}
+
+#gray_button {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #d9d9d9;
+    flex-shrink: 0;
+}
+
+#line {
+    width: 100%;
+    height: 4px;
+    border-radius: 10px;
+    background-color: #d9d9d9;
+}
+
+/* -------- Texto e checklist ao lado do celular -------- */
+
+#container_text {
+    max-width: 480px;
+}
+
+#container_text > p {
+    color: #257cff;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#container_text h3 {
+    font-size: 42px;
+    font-weight: bold;
+    color: #181818;
+    line-height: 1.2;
+    margin-top: 10px;
+}
+
+#container_text > p:last-of-type {
+    color: rgb(85, 84, 84);
+    font-size: 17px;
+    line-height: 1.6;
+    margin-top: 20px;
+}
+
+#container_checks {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    row-gap: 15px;
+    align-items: center;
+}
+
+#container_checks img {
+    width: 20px;
+    height: 20px;
+}
+
+#container_checks p {
+    font-size: 16px;
+    color: #181818;
+    font-weight: 500;
+}
+
+#container_checks a {
+    grid-column: 1 / 3;
+    margin-top: 15px;
+    color: #257cff;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+#container_checks a:hover {
+    text-decoration: underline;
+}
+
+/* ===================== RODAPÉ ===================== */
+
+.linha-horizontal {
+    border-top: 1px solid rgb(220, 220, 220);
+    margin: 0 7%;
+}
+
+footer {
+    background-color: #eef1fb;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 40px 7%;
+}
+
+footer .logotipo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #181818;
+}
+
+footer > p:last-of-type {
+    font-size: 14px;
+    color: rgb(85, 84, 84);
+    margin-top: 8px;
+    max-width: 280px;
+}
+
+#last_links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+#last_links a {
+    font-size: 16px;
+    color: #181818;
+}
+
+#last_links a:hover {
+    color: #257cff;
+}
+
+/* ===================== RESPONSIVIDADE ===================== */
 
 @media (max-width: 1100px) {
     .top_navbar {
@@ -382,212 +609,6 @@ a {
         width: min(100%, 560px);
         max-width: none;
     }
-}
-
-#phone {
-    width: 280px;
-    height: 560px;
-    background-color: white;
-    border: 10px solid #e5e5e5;
-    border-radius: 40px;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
-    display: flex;
-    flex-direction: column;
-    padding: 20px 15px;
-    position: relative;
-}
-
-.app_header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #eeeeee;
-}
-
-.app_header h1 {
-    font-size: 15px;
-    font-weight: bold;
-    color: #181818;
-}
-
-.menu_icon img {
-    width: 18px;
-    height: 18px;
-}
-
-#icon_container {
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    background-color: #257cff;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#icon_container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-#chat {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-#msg1 {
-    align-self: flex-end;
-    background-color: #257cff;
-    color: white;
-    font-size: 13px;
-    line-height: 1.4;
-    padding: 12px 15px;
-    border-radius: 15px 15px 2px 15px;
-    max-width: 80%;
-}
-
-#msg2 {
-    align-self: flex-start;
-    background-color: #eef0f5;
-    color: #444444;
-    font-size: 13px;
-    line-height: 1.4;
-    padding: 12px 15px;
-    border-radius: 15px 15px 15px 2px;
-    max-width: 90%;
-}
-
-#fake_input {
-    margin-top: auto;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border: 1px solid #e0e0e0;
-    border-radius: 30px;
-    padding: 10px 15px;
-}
-
-#gray_button {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background-color: #d9d9d9;
-    flex-shrink: 0;
-}
-
-#line {
-    width: 100%;
-    height: 4px;
-    border-radius: 10px;
-    background-color: #d9d9d9;
-}
-
-#container_text {
-    max-width: 480px;
-}
-
-#container_text > p {
-    color: #257cff;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-#container_text h3 {
-    font-size: 42px;
-    font-weight: bold;
-    color: #181818;
-    line-height: 1.2;
-    margin-top: 10px;
-}
-
-#container_text > p:last-of-type {
-    color: rgb(85, 84, 84);
-    font-size: 17px;
-    line-height: 1.6;
-    margin-top: 20px;
-}
-
-#container_checks {
-    margin-top: 30px;
-    display: grid;
-    grid-template-columns: 24px 1fr;
-    row-gap: 15px;
-    align-items: center;
-}
-
-#container_checks img {
-    width: 20px;
-    height: 20px;
-}
-
-#container_checks p {
-    font-size: 16px;
-    color: #181818;
-    font-weight: 500;
-}
-
-#container_checks a {
-    grid-column: 1 / 3;
-    margin-top: 15px;
-    color: #257cff;
-    font-size: 17px;
-    font-weight: bold;
-}
-
-#container_checks a:hover {
-    text-decoration: underline;
-}
-
-.linha-horizontal {
-    border-top: 1px solid rgb(220, 220, 220);
-    margin: 0 7%;
-}
-
-footer {
-    background-color: #eef1fb;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 40px 7%;
-}
-
-footer .logotipo {
-    font-size: 20px;
-    font-weight: bold;
-    color: #181818;
-}
-
-footer > p:last-of-type {
-    font-size: 14px;
-    color: rgb(85, 84, 84);
-    margin-top: 8px;
-    max-width: 280px;
-}
-
-#last_links {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-}
-
-#last_links a {
-    font-size: 16px;
-    color: #181818;
-}
-
-#last_links a:hover {
-    color: #257cff;
 }
 
 @media (max-width: 700px) {
