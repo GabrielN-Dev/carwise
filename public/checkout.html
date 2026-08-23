@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Assinatura - CarWise Premium</title>
+
+    <!-- Fontes e Ícones -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS Externo -->
+    <link rel="stylesheet" href="./css/checkout.css">
+</head>
+
+<body class="corpo-checkout">
+    <main class="container-principal">
+        <!-- Cabeçalho -->
+        <header class="cabecalho-checkout">
+            <button onclick="window.location.href='./planos.html'" class="botao-voltar" aria-label="Voltar">
+                <span class="material-symbols-outlined icone-voltar">arrow_back_ios_new</span>
+            </button>
+            <h1 class="titulo-checkout">Finalizar Assinatura</h1>
+        </header>
+
+        <div class="grade-checkout">
+            <!-- Coluna Esquerda (Área de Pagamento) -->
+            <section class="coluna-pagamento">
+                <h2 class="subtitulo-checkout">Como você prefere pagar?</h2>
+
+                <!-- Abas de Pagamento -->
+                <div class="abas-pagamento">
+                    <button class="aba-pagamento indisponivel" id="btn-cc" type="button" disabled aria-disabled="true">
+                        <span class="material-symbols-outlined">credit_card</span>
+                        Cartão de Crédito
+                    </button>
+                    <button class="aba-pagamento ativa" id="btn-pix" type="button">
+                        <span class="material-symbols-outlined">qr_code</span>
+                        Pix
+                    </button>
+                </div>
+
+                <!-- Formulários -->
+                <div class="container-formularios">
+                    <!-- Formulário Cartão de Crédito -->
+                    <div id="cc-fields" class="formulario-oculto">
+                        <div class="grupo-input">
+                            <label class="rotulo-input">Nome no cartão</label>
+                            <input class="campo-input" type="text" placeholder="Como impresso no cartão">
+                        </div>
+
+                        <div class="grupo-input">
+                            <label class="rotulo-input">Número do cartão</label>
+                            <div class="input-com-icone">
+                                <input class="campo-input" type="text" placeholder="0000 0000 0000 0000">
+                                <span class="material-symbols-outlined icone-interno">credit_score</span>
+                            </div>
+                        </div>
+
+                        <div class="linha-inputs">
+                            <div class="grupo-input">
+                                <label class="rotulo-input">Data de validade</label>
+                                <input class="campo-input" type="text" placeholder="MM/AA">
+                            </div>
+                            <div class="grupo-input">
+                                <label class="rotulo-input">CVV</label>
+                                <div class="input-com-icone">
+                                    <input class="campo-input" type="text" placeholder="123">
+                                    <span class="material-symbols-outlined icone-interno">info</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grupo-input">
+                            <label class="rotulo-input">CPF do titular</label>
+                            <input class="campo-input" type="text" placeholder="000.000.000-00">
+                        </div>
+                    </div>
+
+                    <!-- Formulário Pix -->
+                    <div id="pix-fields" class="formulario-ativo">
+                        <div class="grupo-input">
+                            <label class="rotulo-input">Nome completo</label>
+                            <input class="campo-input" type="text" placeholder="Nome completo">
+                        </div>
+                        <div class="grupo-input">
+                            <label class="rotulo-input">CPF</label>
+                            <input class="campo-input" type="text" placeholder="000.000.000-00">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Checkbox -->
+                <label class="container-checkbox">
+                    <input type="checkbox" checked class="checkbox-input">
+                    <span class="texto-checkbox">Salvar dados para renovação automática</span>
+                </label>
+            </section>
+
+            <!-- Coluna Direita (Resumo do Plano) -->
+            <aside class="coluna-resumo">
+                <div class="cartao-resumo">
+                    <h2 class="titulo-plano">Premium</h2>
+
+                    <div class="secao-beneficios">
+                        <h3 class="titulo-beneficios">Principais recursos incluídos:</h3>
+                        <ul class="lista-recursos">
+                            <li>
+                                <span class="material-symbols-outlined icone-recurso">forum</span>
+                                <span>Acesso 24/7 ao Consultor IA Veicular</span>
+                            </li>
+                            <li>
+                                <span class="material-symbols-outlined icone-recurso">cloud_done</span>
+                                <span>Histórico de manutenções salvo na nuvem</span>
+                            </li>
+                            <li>
+                                <span class="material-symbols-outlined icone-recurso">build</span>
+                                <span>4 check-ins nível 1 por mês
+                                    <small class="detalhe-recurso">(estética automotiva, borracharia, polimento,
+                                        mecânica leve)</small>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="material-symbols-outlined icone-recurso">car_repair</span>
+                                <span>2 check-ins nível 2 por semestre
+                                    <small class="detalhe-recurso">(troca de freio, balanceamento, pneu,
+                                        alinhamento)</small>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <hr class="divisor-resumo">
+
+                    <div class="area-valores">
+                        <div class="linha-valor">
+                            <span>Mensalidade:</span>
+                            <span>R$ 299,90</span>
+                        </div>
+                        <div class="linha-valor">
+                            <span>Impostos:</span>
+                            <span>R$ 0,00</span>
+                        </div>
+                        <div class="linha-total">
+                            <span>Total a pagar hoje:</span>
+                            <span>R$ 299,90</span>
+                        </div>
+                    </div>
+
+                    <button class="botao-assinar">
+                        Assinar Clube CarWise
+                    </button>
+
+                    <p class="texto-legal">
+                        Ao assinar, você concorda com a renovação automática. Cancele a qualquer momento. Leia os
+                        <a href="#" class="link-legal">Termos de Serviço</a> e a
+                        <a href="#" class="link-legal">Política de Privacidade</a>.
+                    </p>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Script de alternância refatorado -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnPix = document.getElementById('btn-pix');
+            const ccFields = document.getElementById('cc-fields');
+            const pixFields = document.getElementById('pix-fields');
+
+            btnPix.addEventListener('click', () => {
+                // Altera formulários
+                pixFields.classList.remove('formulario-oculto');
+                pixFields.classList.add('formulario-ativo');
+                ccFields.classList.remove('formulario-ativo');
+                ccFields.classList.add('formulario-oculto');
+
+                // Altera abas
+                btnPix.classList.add('ativa');
+                btnCc.classList.remove('ativa');
+            });
+        });
+    </script>
+</body>
+
+</html>
