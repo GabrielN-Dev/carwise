@@ -1,0 +1,555 @@
+/* =========================================
+   VARIÁVEIS GLOBAIS
+========================================= */
+:root {
+  --apple-blue: #007aff;
+  --apple-blue-hover: #0066d6;
+  --apple-text: #1d1d1f;
+  --apple-label: #86868b;
+  --apple-gray: #f5f5f7;
+  --apple-bubble-gray: #e5e5ea;
+  --cor-branco: #ffffff;
+  --borda-clara: #e5e7eb;
+}
+
+/* =========================================
+   RESETS E BASE
+========================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body.corpo-detalhes {
+  font-family: "Inter", "SF Pro", sans-serif;
+  background-color: var(--cor-branco);
+  color: var(--apple-text);
+  padding-top: 64px; /* Espaço para o cabeçalho fixo */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* =========================================
+   CABEÇALHO
+========================================= */
+.cabecalho-blur {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 64px;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--borda-clara);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  z-index: 50;
+}
+
+.cabecalho-blur .logo {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.navegacao-desktop {
+  display: none;
+  gap: 24px;
+  align-items: center;
+}
+
+.link-nav {
+  text-decoration: none;
+  color: var(--apple-label);
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.link-nav:hover {
+  color: var(--apple-text);
+}
+
+.link-nav.ativo {
+  color: var(--apple-text);
+  font-weight: 700;
+  border-bottom: 2px solid var(--apple-text);
+  padding-bottom: 4px;
+}
+
+.acoes-cabecalho {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.botao-icone {
+  background: none;
+  border: none;
+  color: var(--apple-label);
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.botao-icone:hover {
+  color: var(--apple-text);
+}
+
+.botao-login {
+  background-color: var(--apple-blue);
+  color: var(--cor-branco);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+.botao-login:hover {
+  opacity: 0.9;
+}
+
+/* =========================================
+   CONTEÚDO PRINCIPAL (GALERIA E INFO)
+========================================= */
+.container-principal {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex-grow: 1;
+}
+
+/* Coluna Galeria */
+.coluna-galeria {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.imagem-destaque {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.imagem-destaque img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay-360 {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.grupo-hover:hover .overlay-360 {
+  opacity: 1;
+}
+
+.badge-360 {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  color: var(--apple-text);
+  padding: 8px 16px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.grade-miniaturas {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.miniatura {
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.miniatura:hover {
+  opacity: 1;
+}
+.miniatura.ativa {
+  opacity: 1;
+  border: 2px solid var(--apple-blue);
+}
+
+.miniatura img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Coluna Informações */
+.coluna-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.titulo-veiculo {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  margin-bottom: 4px;
+}
+
+.tags-veiculo {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.tag {
+  background-color: #f3f4f6;
+  color: var(--apple-label);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
+.preco-veiculo {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.grupo-ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.botao-primario {
+  background-color: var(--apple-blue);
+  color: var(--cor-branco);
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+.botao-primario:hover {
+  opacity: 0.9;
+}
+
+.botao-secundario-icone {
+  background-color: var(--cor-branco);
+  color: var(--apple-text);
+  border: 1px solid var(--borda-clara);
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.3s;
+}
+.botao-secundario-icone:hover {
+  background-color: #f9fafb;
+}
+.icone-azul {
+  color: var(--apple-blue);
+}
+
+.cartao-beneficio {
+  background-color: var(--apple-gray);
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.cartao-beneficio p {
+  font-size: 14px;
+  font-weight: 500;
+}
+.icone-estrela {
+  font-variation-settings: "FILL" 1;
+  color: var(--apple-blue);
+}
+
+.detalhes-adicionais {
+  border-top: 1px solid var(--borda-clara);
+  padding-top: 16px;
+  margin-top: auto;
+}
+.detalhes-adicionais h3 {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.lista-detalhes {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.lista-detalhes li {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #f3f4f6;
+  padding-bottom: 8px;
+  font-size: 14px;
+}
+.lista-detalhes li.sem-borda {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.rotulo {
+  color: var(--apple-label);
+}
+.valor {
+  font-weight: 500;
+}
+
+/* =========================================
+   SEÇÕES GERAIS (CINZA E BRANCA)
+========================================= */
+.secao-cinza {
+  background-color: var(--apple-gray);
+  padding: 32px 24px;
+}
+.secao-branca {
+  background-color: var(--cor-branco);
+  padding: 32px 24px;
+}
+
+.container-secao {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.titulo-centralizado {
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 32px;
+  letter-spacing: -0.5px;
+}
+
+/* Equipamentos */
+.grade-equipamentos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.item-equipamento {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+.icone-grande {
+  font-size: 36px;
+  color: var(--apple-blue);
+}
+.item-equipamento p {
+  font-weight: 500;
+}
+
+/* Chat IA */
+.grade-dupla-alinhada {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-items: center;
+}
+.titulo-secao {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.texto-descricao {
+  font-size: 16px;
+  color: var(--apple-label);
+  line-height: 1.5;
+}
+
+.container-chat {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.bolha-chat {
+  padding: 16px;
+  border-radius: 16px;
+  max-width: 80%;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.bolha-chat.usuario {
+  background-color: var(--apple-bubble-gray);
+  color: #000;
+  border-bottom-right-radius: 4px;
+  align-self: flex-end;
+}
+.bolha-chat.ia {
+  background-color: var(--apple-blue);
+  color: var(--cor-branco);
+  border-bottom-left-radius: 4px;
+  align-self: flex-start;
+}
+
+/* Simulador e Ficha Técnica */
+.grade-dupla {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+.cartao-info {
+  background-color: var(--cor-branco);
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+.cartao-info h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 32px;
+}
+
+.conteudo-simulador {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.conteudo-simulador label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.controle-deslizante {
+  width: 100%;
+  height: 4px;
+  background-color: #e5e7eb;
+  border-radius: 8px;
+  /* -webkit-appearance: none; */
+  accent-color: var(--apple-blue);
+  cursor: pointer;
+}
+.linha-resultado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.valor-parcela {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--apple-blue);
+}
+.texto-simulador {
+  color: var(--apple-label);
+  font-size: 13px;
+}
+
+/* =========================================
+   RODAPÉ
+========================================= */
+.rodape-simples {
+  background-color: var(--cor-branco);
+  padding: 32px 0;
+  border-top: 1px solid var(--borda-clara);
+  margin-top: auto;
+}
+.grade-rodape {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  margin-bottom: 24px;
+}
+.coluna-rodape {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.coluna-rodape h4 {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.coluna-rodape a {
+  text-decoration: none;
+  color: var(--apple-label);
+  font-size: 14px;
+  transition: color 0.3s;
+}
+.coluna-rodape a:hover {
+  color: var(--apple-text);
+}
+
+.rodape-inferior {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px 24px 0;
+  border-top: 1px solid #f3f4f6;
+  text-align: center;
+  color: var(--apple-label);
+  font-size: 14px;
+}
+
+/* =========================================
+   RESPONSIVIDADE (Desktop)
+========================================= */
+@media (min-width: 768px) {
+  .navegacao-desktop {
+    display: flex;
+  }
+  .container-principal {
+    flex-direction: row;
+  }
+  .coluna-galeria {
+    width: 60%;
+  }
+  .coluna-info {
+    width: 40%;
+  }
+  .grade-equipamentos {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .grade-dupla-alinhada {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grade-dupla {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grade-rodape {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
