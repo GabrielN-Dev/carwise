@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Conta</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="./css/login.css">
+</head>
+
+<body class="corpo-cadastro">
+    <a class="botao-voltar" href="javascript:history.back()" aria-label="Voltar para a página anterior">
+        <span class="material-symbols-outlined">arrow_back</span>
+    </a>
+    <div class="fundo-container">
+        <div class="fundo-mascara"></div>
+        <div class="fundo-imagem"
+            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCJ91L-cojOW93KuMFpiIzc41e2PpI1huCFDbxTUVclRUnW0AmxmE7n9Ek9Srexg_xVUeTdHRhbDn7S-bNW3DlcKI3-Wy2L6JBYbeZoQU194ONmRabEvBPsN8FGwEQ0QSzvsBDGDQfWWt8ieO9iY5AR88fTZ6Nt8XGuQYHfnhOmBwthil1LtAltYwk3jKlHk1UZStjcifzdnwTf56uDR6h13pmyRM7d5a4hDeVVSPyqkB1lrlmbeFb84A");'>
+        </div>
+    </div>
+
+    <main class="container-principal">
+        <div class="cartao-cadastro cartao-interativo">
+
+            <div class="cabecalho-cartao">
+                <div class="seletor-abas">
+                    <button id="aba-login" class="aba-alternancia aba-inativa" type="button">Login</button>
+                    <button id="aba-cadastro" class="aba-alternancia aba-ativa" type="button">Cadastro</button>
+                </div>
+
+                <h1 class="titulo-marca">CarWise</h1>
+                <h2 id="titulo-acao" class="titulo-acao">Junte-se ao Clube.</h2>
+                <p id="texto-descritivo" class="texto-descritivo">
+                    Crie sua conta para destravar o Consultor IA e ter acesso premium ao nosso estoque.
+                </p>
+            </div>
+
+            <form id="formulario-login" class="formulario-login" hidden>
+                <div class="grupo-input">
+                    <label class="rotulo-input" for="email-login">E-mail</label>
+                    <input class="campo-entrada" id="email-login" name="email-login" placeholder="seu@email.com"
+                        type="email" autocomplete="email" required>
+                </div>
+
+                <div class="grupo-input">
+                    <label class="rotulo-input" for="senha-login">Senha</label>
+                    <div class="container-campo-icone">
+                        <input class="campo-entrada campo-com-icone" id="senha-login" name="senha-login"
+                            placeholder="••••••••" type="password" autocomplete="current-password" required>
+                        <button class="botao-mostrar-senha" type="button" aria-label="Mostrar senha">
+                            <span class="material-symbols-outlined">visibility</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="area-acoes">
+                    <button class="botao-primario-grande" type="submit">Entrar</button>
+                    <a class="link-termos" href="#">Esqueci minha senha</a>
+                </div>
+            </form>
+
+            <form id="formulario-cadastro" class="formulario-cadastro">
+
+                <div class="grupo-input cadastro-apenas">
+                    <label class="rotulo-input" for="nome">Nome completo</label>
+                    <input class="campo-entrada" id="nome" name="nome" placeholder="Seu nome completo" type="text"
+                        required>
+                </div>
+
+                <div class="grupo-input cadastro-apenas">
+                    <label class="rotulo-input" for="email">E-mail</label>
+                    <input class="campo-entrada" id="email" name="email" placeholder="seu@email.com" type="email"
+                        required>
+                </div>
+
+                <div class="linha-grade cadastro-apenas">
+                    <div class="grupo-input">
+                        <label class="rotulo-input" for="telefone">Telefone</label>
+                        <input class="campo-entrada" id="telefone" name="telefone" placeholder="(00) 00000-0000"
+                            type="tel" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label class="rotulo-input" for="data_nascimento">Data de Nascimento</label>
+                        <input class="campo-entrada" id="data_nascimento" name="data_nascimento"
+                            placeholder="Ex: 27/01/2004" type="text" required>
+                    </div>
+                </div>
+
+                <div class="linha-grade cadastro-apenas">
+                    <div class="grupo-input cadastro-apenas">
+                        <label class="rotulo-input" for="senha">Senha</label>
+                        <div class="container-campo-icone">
+                            <input class="campo-entrada campo-com-icone" id="senha" name="senha" placeholder="••••••••"
+                                type="password" required>
+                            <button class="botao-mostrar-senha" type="button" aria-label="Mostrar senha">
+                                <span class="material-symbols-outlined">visibility</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="grupo-input cadastro-apenas">
+                        <label class="rotulo-input" for="confirmar_senha">Confirmar Senha</label>
+                        <div class="container-campo-icone">
+                            <input class="campo-entrada campo-com-icone" id="confirmar_senha" name="confirmar_senha"
+                                placeholder="••••••••" type="password" required>
+                            <button class="botao-mostrar-senha" type="button" aria-label="Mostrar confirmação de senha">
+                                <span class="material-symbols-outlined">visibility</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="area-acoes cadastro-apenas">
+                    <button id="botao-formulario" class="botao-primario-grande" type="submit">Criar Conta</button>
+                    <p class="texto-termos cadastro-apenas">
+                        Ao criar uma conta, você concorda com nossos <br class="quebra-linha-mobile">
+                        <a class="link-termos" href="#">Termos de Uso</a> e
+                        <a class="link-termos" href="#">Política de Privacidade</a>.
+                    </p>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const abaLogin = document.querySelector('#aba-login');
+            const abaCadastro = document.querySelector('#aba-cadastro');
+            const tituloAcao = document.querySelector('#titulo-acao');
+            const textoDescritivo = document.querySelector('#texto-descritivo');
+            const botaoFormulario = document.querySelector('#botao-formulario');
+            const camposCadastro = document.querySelectorAll('.cadastro-apenas');
+            const formularioLogin = document.querySelector('#formulario-login');
+            const formularioCadastro = document.querySelector('#formulario-cadastro');
+
+            function alternarFormulario(modoLogin) {
+                abaLogin.classList.toggle('aba-ativa', modoLogin);
+                abaLogin.classList.toggle('aba-inativa', !modoLogin);
+                abaCadastro.classList.toggle('aba-ativa', !modoLogin);
+                abaCadastro.classList.toggle('aba-inativa', modoLogin);
+
+                formularioLogin.hidden = !modoLogin;
+                formularioCadastro.hidden = modoLogin;
+                camposCadastro.forEach(campo => campo.hidden = modoLogin);
+                tituloAcao.textContent = modoLogin ? 'Bem-vindo de volta.' : 'Junte-se ao Clube.';
+                textoDescritivo.textContent = modoLogin
+                    ? 'Entre na sua conta para acessar o Consultor IA e seu estoque personalizado.'
+                    : 'Crie sua conta para destravar o Consultor IA e ter acesso premium ao nosso estoque.';
+                botaoFormulario.textContent = modoLogin ? 'Entrar' : 'Criar Conta';
+            }
+
+            const modoInicial = new URLSearchParams(window.location.search).get('modo');
+            alternarFormulario(modoInicial !== 'cadastro');
+
+            abaLogin.addEventListener('click', () => alternarFormulario(true));
+            abaCadastro.addEventListener('click', () => alternarFormulario(false));
+
+            const botoesSenha = document.querySelectorAll('.botao-mostrar-senha');
+
+            botoesSenha.forEach(botao => {
+                botao.addEventListener('click', function () {
+                    const input = this.previousElementSibling;
+                    const icone = this.querySelector('.material-symbols-outlined');
+
+                    if (input.type === 'password') {
+                        input.type = 'text';
+                        icone.textContent = 'visibility_off';
+                    } else {
+                        input.type = 'password';
+                        icone.textContent = 'visibility';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
