@@ -40,6 +40,9 @@
                 </p>
             </div>
 
+
+ <!-- ======================================== FORM LOGIN  ===================================================== -->
+
             <form id="formulario-login" class="formulario-login" hidden>
                 <div class="grupo-input">
                     <label class="rotulo-input" for="email-login">E-mail</label>
@@ -64,6 +67,8 @@
                 </div>
             </form>
 
+<!--================================= FORM CADASTRO ==================================================-->
+
             <form id="formulario-cadastro" class="formulario-cadastro">
 
                 <div class="grupo-input cadastro-apenas">
@@ -87,7 +92,7 @@
                     <div class="grupo-input">
                         <label class="rotulo-input" for="data_nascimento">Data de Nascimento</label>
                         <input class="campo-entrada" id="data_nascimento" name="data_nascimento"
-                            placeholder="Ex: 27/01/2004" type="text" required>
+                            placeholder="Ex: 27/01/2004" type="date" required>
                     </div>
                 </div>
 
@@ -102,6 +107,9 @@
                             </button>
                         </div>
                     </div>
+
+                   
+
                     <div class="grupo-input cadastro-apenas">
                         <label class="rotulo-input" for="confirmar_senha">Confirmar Senha</label>
                         <div class="container-campo-icone">
@@ -114,6 +122,16 @@
                     </div>
                 </div>
 
+                 <!-- TERMÔMETRO AQUI -->
+                    <div class="container-termometro" style="margin-top: 8px;">
+                        <div style="width: 100%; background-color: #e0e0e0; height: 6px; border-radius: 4px; overflow: hidden;">
+                            <div id="strength-bar" style="height: 100%; width: 0%; transition: width 0.3s ease, background-color 0.3s ease;"></div>
+                        </div>
+                        <small id="strength-text" style="display: block; margin-top: 4px; font-weight: 500; font-size: 12px;"></small>
+                    </div>
+
+                <!-- ========================== -->
+
                 <div class="area-acoes cadastro-apenas">
                     <button id="botao-formulario" class="botao-primario-grande" type="submit">Criar Conta</button>
                     <p class="texto-termos cadastro-apenas">
@@ -125,6 +143,9 @@
             </form>
         </div>
     </main>
+
+
+<!--================================================================================================-->
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -178,5 +199,6 @@
         });
     </script>
 </body>
+    <script src="../assets/js/login.js" defer></script>
 
 </html>
