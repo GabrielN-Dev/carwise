@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarWise - Rede Parceira</title>
+
+    <!-- Fontes e Ícones -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS Externo -->
+    <link rel="stylesheet" href="./css/rede-parceira.css">
+    <link rel="stylesheet" href="./css/header.css">
+</head>
+
+<body class="corpo-rede">
+    <!-- Cabeçalho Global -->
+    <header class="cabecalho fundo-desfocado">
+        <a class="cabecalho-marca" href="./index.html">
+            <h2 class="cabecalho-titulo">CarWise</h2>
+        </a>
+        <nav class="cabecalho-navegacao">
+            <a class="cabecalho-link" href="./planos.html">Planos</a>
+            <a class="cabecalho-link" href="./catalogo.html">Catalogo</a>
+            <a class="cabecalho-link" href="./rede-parceira.html">Rede Parceira</a>
+        </nav>
+        <div class="cabecalho-acoes">
+            <a class="botao-contorno" href="./login.html?modo=cadastro">Cadastrar</a>
+            <a class="botao-preenchido" href="./login.html?modo=login">Entrar</a>
+        </div>
+    </header>
+
+    <main class="conteudo-dividido">
+        <aside class="painel-lista">
+            <div class="cabecalho-painel">
+                <h1 class="titulo-painel">Rede Parceira</h1>
+
+                <div class="container-busca">
+                    <span class="material-symbols-outlined icone-busca">search</span>
+                    <input class="campo-busca" type="text" placeholder="Buscar por nome ou região...">
+                </div>
+
+                <div class="controle-segmentado">
+                    <input type="radio" id="plano-qualquer" name="plano" class="input-oculto" checked>
+                    <label class="rotulo-segmentado" for="plano-qualquer">Qualquer Plano</label>
+
+                    <input type="radio" id="plano-std" name="plano" class="input-oculto">
+                    <label class="rotulo-segmentado" for="plano-std">Standard</label>
+
+                    <input type="radio" id="plano-plus" name="plano" class="input-oculto">
+                    <label class="rotulo-segmentado" for="plano-plus">Plus</label>
+
+                    <input type="radio" id="plano-prem" name="plano" class="input-oculto">
+                    <label class="rotulo-segmentado" for="plano-prem">Premium</label>
+                </div>
+
+                <!-- Chips de Categoria -->
+                <div class="lista-categorias oculta-scrollbar">
+                    <button class="chip-categoria ativo">Todos</button>
+                    <button class="chip-categoria">Mecânica</button>
+                    <button class="chip-categoria">Estética Automotiva</button>
+                    <button class="chip-categoria">Borracharia</button>
+                </div>
+            </div>
+
+            <div class="area-rolavel-lista oculta-scrollbar">
+                <h2 class="subtitulo-lista">Mais próximos de você</h2>
+
+                <article class="cartao-parceiro cartao-interativo cartao-clicavel">
+                    <div class="topo-cartao">
+                        <div class="info-texto">
+                            <h3 class="nome-parceiro">Oficina Jardim</h3>
+                            <div class="distancia-parceiro destaque-azul">
+                                <span class="material-symbols-outlined icone-preenchido">location_on</span>
+                                <span>1.2 km de distância</span>
+                            </div>
+                        </div>
+                        <div class="badge-avaliacao">
+                            <span class="material-symbols-outlined icone-preenchido icone-estrela">star</span>
+                            <span class="nota-avaliacao">4.8</span>
+                        </div>
+                    </div>
+                    <div class="tags-cartao">
+                        <span class="tag-servico">
+                            <span class="material-symbols-outlined">build</span> Mecânica
+                        </span>
+                        <span class="tag-plano premium">
+                            <span class="material-symbols-outlined">verified</span> Aceita Premium
+                        </span>
+                    </div>
+                    <div class="rodape-cartao">
+                        <button class="botao-rota">Ver rota <span
+                                class="material-symbols-outlined">arrow_forward</span></button>
+                    </div>
+                </article>
+
+                <!-- Cartão 2 -->
+                <article class="cartao-parceiro cartao-interativo">
+                    <div class="topo-cartao">
+                        <div class="info-texto">
+                            <h3 class="nome-parceiro">Auto Estética Prime</h3>
+                            <div class="distancia-parceiro">
+                                <span class="material-symbols-outlined">location_on</span>
+                                <span>2.5 km de distância</span>
+                            </div>
+                        </div>
+                        <div class="badge-avaliacao">
+                            <span class="material-symbols-outlined icone-preenchido icone-estrela">star</span>
+                            <span class="nota-avaliacao">4.9</span>
+                        </div>
+                    </div>
+                    <div class="tags-cartao">
+                        <span class="tag-servico">
+                            <span class="material-symbols-outlined">water_drop</span> Estética
+                        </span>
+                        <span class="tag-plano plus">
+                            <span class="material-symbols-outlined">add_circle</span> Aceita Plus
+                        </span>
+                    </div>
+                    <div class="rodape-cartao">
+                        <button class="botao-rota">Ver rota <span
+                                class="material-symbols-outlined">arrow_forward</span></button>
+                    </div>
+                </article>
+
+                <!-- Cartão 3 -->
+                <article class="cartao-parceiro cartao-interativo" tabindex="0">
+                    <div class="topo-cartao">
+                        <div class="info-texto">
+                            <h3 class="nome-parceiro">Borracharia Central</h3>
+                            <div class="distancia-parceiro">
+                                <span class="material-symbols-outlined">location_on</span>
+                                <span>3.1 km de distância</span>
+                            </div>
+                        </div>
+                        <div class="badge-avaliacao">
+                            <span class="material-symbols-outlined icone-preenchido icone-estrela">star</span>
+                            <span class="nota-avaliacao">4.5</span>
+                        </div>
+                    </div>
+                    <div class="tags-cartao">
+                        <span class="tag-servico">
+                            <span class="material-symbols-outlined">tire_repair</span> Borracharia
+                        </span>
+                        <span class="tag-plano generico">
+                            <span class="material-symbols-outlined">check_circle</span> Qualquer Plano
+                        </span>
+                    </div>
+                    <div class="rodape-cartao">
+                        <button class="botao-rota">Ver rota <span
+                                class="material-symbols-outlined">arrow_forward</span></button>
+                    </div>
+                </article>
+            </div>
+        </aside>
+
+        <div class="painel-mapa mapa-google"><iframe
+                src="https://www.google.com/maps?q=S%C3%A3o+Paulo&amp;z=12&amp;t=m&amp;hl=pt-BR&amp;output=embed"
+                allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                title="Google Map of São Paulo"></iframe><a href="https://sites.google.com/view/embed-maps/"
+                style="position:absolute;left:8px;bottom:1px;z-index:999;height:10px;line-height:10px;font-family:Roboto,Arial,sans-serif;font-size:10px;font-weight:400;color:#5f6368;text-decoration:none;white-space:nowrap;opacity:.95;text-shadow:0 1px 1px rgba(255,255,255,.95);cursor:pointer;">google.com</a>
+        </div>
+    </main>
+
+    <div class="modal-oficina" id="modal-oficina" role="dialog" aria-modal="true" aria-hidden="true"
+        aria-labelledby="nome-oficina-modal">
+        <div class="conteudo-modal-oficina">
+            <button class="botao-fechar-modal" id="fechar-modal-oficina" type="button"
+                aria-label="Fechar detalhes da oficina">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <div class="imagem-modal-oficina">
+                <img src="../imgs/oficina.jpg" alt="Exterior da Oficina Jardim">
+            </div>
+            <div class="cabecalho-modal-oficina">
+                <h2 id="nome-oficina-modal">Oficina Jardim</h2>
+            </div>
+            <p class="status-modal-oficina"><span class="material-symbols-outlined">location_on</span> 1.2 km de
+                distância</p>
+            <div class="lista-detalhes-oficina">
+                <div><span class="material-symbols-outlined">location_on</span><span>Rua das Flores, 123 - Jardim
+                        Paulista</span></div>
+                <div><span class="material-symbols-outlined">star</span><span><strong>4.8</strong> (250+
+                        avaliações)</span></div>
+                <div><span class="material-symbols-outlined">schedule</span><span>Aberto hoje - 08:00 - 18:00</span>
+                </div>
+            </div>
+            <div class="plano-oficina"><span>Plano necessário</span><strong>Premium</strong></div>
+            <p class="rotulo-servicos-oficina">Serviços disponíveis</p>
+            <div class="servicos-oficina">
+                <span>Mecânica Geral</span>
+                <span>Troca de Óleo</span>
+                <span>Diagnóstico IA</span>
+                <span>Freios</span>
+            </div>
+            <div class="acoes-modal-oficina">
+                <a class="botao-rota-modal"
+                    href="https://www.google.com/maps/search/?api=1&query=Rua+das+Flores%2C+123%2C+Jardim+Paulista%2C+S%C3%A3o+Paulo"
+                    target="_blank" rel="noopener noreferrer">
+                    Ver rota <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+                <button class="botao-primario botao-modal-oficina" type="button">Check-in indisponivel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modalOficina = document.querySelector('#modal-oficina');
+        const fecharModalOficina = document.querySelector('#fechar-modal-oficina');
+        const cartoesOficina = document.querySelectorAll('.cartao-clicavel');
+
+        function abrirDetalhesOficina() {
+            modalOficina.classList.add('visivel');
+            modalOficina.setAttribute('aria-hidden', 'false');
+            fecharModalOficina.focus();
+        }
+
+        function fecharDetalhesOficina() {
+            modalOficina.classList.remove('visivel');
+            modalOficina.setAttribute('aria-hidden', 'true');
+        }
+
+        cartoesOficina.forEach(cartao => {
+            cartao.addEventListener('click', abrirDetalhesOficina);
+            cartao.addEventListener('keydown', event => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    abrirDetalhesOficina();
+                }
+            });
+        });
+
+        fecharModalOficina.addEventListener('click', fecharDetalhesOficina);
+        modalOficina.addEventListener('click', event => {
+            if (event.target === modalOficina) fecharDetalhesOficina();
+        });
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape') fecharDetalhesOficina();
+        });
+    </script>
+</body>
+
+</html>
