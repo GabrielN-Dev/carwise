@@ -1,0 +1,166 @@
+/* Header compartilhado entre as telas principais */
+.cabecalho {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 64px;
+  padding: 12px 24px;
+  border-bottom: 1px solid rgba(193, 198, 213, 0.3);
+  background-color: rgba(249, 249, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.cabecalho-marca {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #181c22;
+  text-decoration: none;
+}
+
+.cabecalho-logo {
+  width: 24px;
+  height: 24px;
+}
+
+.cabecalho-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cabecalho-titulo {
+  margin: 0;
+  color: #181c22;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.cabecalho-navegacao {
+  display: none;
+  flex: 1;
+  justify-content: center;
+  gap: 32px;
+}
+
+.cabecalho-link {
+  color: #414753;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.cabecalho-link:hover {
+  color: #0071e3;
+}
+
+.cabecalho-acoes {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cabecalho-acoes .botao-contorno,
+.cabecalho-acoes .botao-preenchido {
+  display: flex;
+  min-width: 84px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.cabecalho-acoes .botao-contorno {
+  border: 1px solid rgba(193, 198, 213, 0.3);
+  color: #181c22;
+}
+
+.cabecalho-acoes .botao-contorno:hover {
+  background-color: #f1f3fc;
+}
+
+.cabecalho-acoes .botao-preenchido {
+  background-color: #181c22;
+  color: #ffffff;
+}
+
+.cabecalho-acoes .botao-preenchido:hover {
+  opacity: 0.9;
+}
+
+@media (min-width: 768px) {
+  .cabecalho {
+    padding: 12px 80px;
+  }
+
+  .cabecalho-navegacao {
+    display: flex;
+  }
+}
+
+.rodape-principal {
+  margin-top: auto;
+  background-color: #f1f3fc;
+}
+
+.rodape-principal .container-rodape {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+.rodape-principal .info-marca .logo-rodape {
+  margin-bottom: 8px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.rodape-principal .info-marca p {
+  margin: 0;
+  color: #414753;
+  font-size: 14px;
+}
+
+.rodape-principal .links-rodape {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.rodape-principal .link-rodape {
+  color: #414753;
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.rodape-principal .link-rodape:hover {
+  color: #181c22;
+}
+
+@media (min-width: 768px) {
+  .rodape-principal .container-rodape {
+    grid-template-columns: 1fr 3fr;
+  }
+
+  .rodape-principal .links-rodape {
+    justify-content: flex-end;
+  }
+}
