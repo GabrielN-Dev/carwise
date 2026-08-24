@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil - Minha Garagem</title>
+
+    <!-- Fontes e Ícones -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS Externo -->
+    <link rel="stylesheet" href="./css/perfil.css">
+    <link rel="stylesheet" href="./css/sidebar.css">
+</head>
+
+<body class="corpo-perfil">
+    <!-- Menu Lateral -->
+    <!-- INÍCIO DO MENU LATERAL PADRÃO -->
+    <nav class="menu-lateral" id="menu-lateral" aria-label="Menu principal">
+        <div class="cabecalho-menu">
+            <div class="textos-cabecalho-menu">
+                <h1 class="titulo-menu">CarWise</h1>
+                <p class="subtitulo-menu">Premium Auto Care</p>
+            </div>
+            <button class="botao-recolher" id="btn-recolher" aria-label="Recolher menu">
+                <span class="material-symbols-outlined icone-recolher" id="icone-recolher">chevron_left</span>
+            </button>
+        </div>
+
+        <ul class="lista-menu">
+            <li>
+                <a href="./garagem.html" class="link-menu">
+                    <span class="material-symbols-outlined">garage</span>
+                    <span class="texto-link">Garagem</span>
+                </a>
+            </li>
+            <li>
+                <a href="./historico.html" class="link-menu">
+                    <span class="material-symbols-outlined">history</span>
+                    <span class="texto-link">Histórico</span>
+                </a>
+            </li>
+            <li>
+                <a href="./consultor-ia.html" class="link-menu">
+                    <span class="material-symbols-outlined">smart_toy</span>
+                    <span class="texto-link">Consultor IA</span>
+                </a>
+            </li>
+            <li>
+                <a href="./rede-parceira.html" class="link-menu">
+                    <span class="material-symbols-outlined">map</span>
+                    <span class="texto-link">Rede Parceira</span>
+                </a>
+            </li>
+            <li>
+                <a href="./planos.html" class="link-menu">
+                    <span class="material-symbols-outlined">card_membership</span>
+                    <span class="texto-link">Assinatura</span>
+                </a>
+            </li>
+        </ul>
+
+        <!-- Rodapé com Perfil Fixo -->
+        <div class="rodape-menu">
+            <!-- O link agora envolve todo o bloco do usuário -->
+            <a href="./perfil.html" class="link-perfil-rodape">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwKRfapvjjmleC3hV2HadgjtaopWGv_bl5NGYDjSurHNF6A96QKVOWDjx7L381HANqmDznhfTiLwkkJWYXpclqKAyXy9uCPeb4Xhlt5kDn93YFxiyPN36gKhEhkyiDHVYGmHcWTqe8iu1YFxFQT5lLIsQQNoh5C0X7dOhpVl8emhzgg-dVfRIMQq9OfYKT9inzB7XuWcZDPS3FRC4m5-kT1HB_7Q2YowzHbNqBkb0I6YcuDeapEFPIuw"
+                    alt="Foto do Perfil" class="avatar-menu">
+                <div class="textos-usuario-menu">
+                    <span class="nome-usuario-menu">Rafael Moraes</span>
+                    <span class="plano-usuario-menu">Plano Plus</span>
+                </div>
+            </a>
+        </div>
+    </nav>
+    <!-- FIM DO MENU LATERAL PADRÃO -->
+
+    <!-- Conteúdo Principal -->
+    <main class="conteudo-principal">
+        <div class="container-perfil">
+
+            <!-- Cabeçalho da Página -->
+            <header class="cabecalho-pagina">
+                <h2 class="titulo-pagina">Meu Perfil</h2>
+                <p class="subtitulo-pagina">Gestão de conta e segurança</p>
+            </header>
+
+            <!-- Grade do Perfil (Bento Box Layout) -->
+            <div class="grade-perfil">
+
+                <!-- Coluna Esquerda: Cartão do Herói (Avatar) -->
+                <div class="coluna-heroi">
+                    <section class="cartao-perfil cartao-interativo">
+
+                        <div class="grupo-avatar">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCShkrSA2FYG6cp2l7_hC9-QS9IUZEVfmrhuYtwP4x3OhyfRcDhH6-6hNVvHerAP4wrNmTTMP6Uhi5EGJ6FapxWoVKgW2mot6ACqjFmTb8yP9_oDwavKeiLhLJGx1dXZLwuZKQwBS9Hy22G7mWM0Fr6DxfrnXWJ0o9D55VUqnrzrX2HfhAW7z9BoeSdldIpZQEtQJw--6ODyKIk2qPKlrc05vcDZe3O1Cj8IqGJ08o60Va3wnLS1i-FkA"
+                                alt="Foto de perfil" class="imagem-avatar">
+                            <div class="overlay-avatar">
+                                <span class="material-symbols-outlined">photo_camera</span>
+                            </div>
+                        </div>
+
+                        <h3 class="nome-destaque">Mariana Silva</h3>
+                        <p class="texto-membro">Membro desde Jan 2024</p>
+
+                        <button class="botao-secundario botao-largura-total">
+                            <span class="material-symbols-outlined icone-pequeno">upload</span>
+                            Alterar Foto
+                        </button>
+
+                        <div class="status-conta">
+                            <div class="item-status">
+                                <span class="material-symbols-outlined">shield_person</span>
+                                <span>Conta Verificada</span>
+                            </div>
+                            <div class="item-status">
+                                <span class="material-symbols-outlined">workspace_premium</span>
+                                <span>Plano Premium Ativo</span>
+                            </div>
+                        </div>
+
+                    </section>
+                </div>
+
+                <!-- Coluna Direita: Formulários -->
+                <div class="coluna-formularios">
+
+                    <!-- Cartão: Dados Pessoais -->
+                    <section class="cartao-formulario cartao-interativo">
+                        <h4 class="titulo-formulario">
+                            <span class="material-symbols-outlined icone-azul">person_edit</span>
+                            Dados Pessoais
+                        </h4>
+
+                        <div class="grade-inputs">
+                            <div class="grupo-input">
+                                <label class="rotulo-input">Nome Completo</label>
+                                <input type="text" class="campo-entrada" value="Mariana Silva">
+                            </div>
+                            <div class="grupo-input">
+                                <label class="rotulo-input">E-mail</label>
+                                <input type="email" class="campo-entrada" value="mariana.silva@example.com">
+                            </div>
+                            <div class="grupo-input">
+                                <label class="rotulo-input">Telefone</label>
+                                <input type="tel" class="campo-entrada" value="(11) 98765-4321">
+                            </div>
+                            <div class="grupo-input">
+                                <label class="rotulo-input">CPF</label>
+                                <input type="text" class="campo-entrada bloqueado" value="123.456.789-00" disabled>
+                                <p class="texto-ajuda">*Para alterar o CPF, contate o suporte.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Cartão: Endereço -->
+                    <section class="cartao-formulario cartao-interativo">
+                        <h4 class="titulo-formulario">
+                            <span class="material-symbols-outlined icone-azul">location_on</span>
+                            Endereço
+                        </h4>
+
+                        <div class="grade-inputs-endereco">
+                            <div class="grupo-input cep">
+                                <label class="rotulo-input">CEP</label>
+                                <input type="text" class="campo-entrada" value="01234-567">
+                            </div>
+                            <div class="grupo-input rua">
+                                <label class="rotulo-input">Rua</label>
+                                <input type="text" class="campo-entrada" value="Avenida Paulista">
+                            </div>
+                            <div class="grupo-input numero">
+                                <label class="rotulo-input">Número</label>
+                                <input type="text" class="campo-entrada" value="1000">
+                            </div>
+                            <div class="grupo-input complemento">
+                                <label class="rotulo-input">Complemento</label>
+                                <input type="text" class="campo-entrada" value="Apto 123">
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Cartão: Segurança -->
+                    <section class="cartao-formulario cartao-interativo">
+                        <h4 class="titulo-formulario">
+                            <span class="material-symbols-outlined icone-azul">security</span>
+                            Segurança
+                        </h4>
+
+                        <div class="lista-seguranca">
+                            <div class="item-seguranca">
+                                <div class="textos-seguranca">
+                                    <h5 class="titulo-item-seguranca">Senha de Acesso</h5>
+                                    <p class="descricao-item-seguranca">Última alteração há 3 meses</p>
+                                </div>
+                                <button class="botao-secundario-borda">Alterar Senha</button>
+                            </div>
+
+                            <div class="item-seguranca item-destaque">
+                                <div class="textos-seguranca">
+                                    <h5 class="titulo-item-seguranca">
+                                        Autenticação em Dois Fatores (2FA)
+                                        <span class="badge-erro">Desativado</span>
+                                    </h5>
+                                    <p class="descricao-item-seguranca">Adicione uma camada extra de segurança à sua
+                                        conta.</p>
+                                </div>
+                                <button class="botao-primario">Ativar 2FA</button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Rodapé de Ações (Fixo/Sticky no fim) -->
+                    <div class="rodape-acoes">
+                        <button class="botao-texto">Cancelar</button>
+                        <button class="botao-primario botao-sombra">Salvar Alterações</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="./js/sidebar.js"></script>
+</body>
+
+</html>
