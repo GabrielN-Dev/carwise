@@ -231,6 +231,8 @@ if (formLogin) {
     const usuariosCadastrados = JSON.parse(localStorage.getItem("usuarios")) || [];
     const hashSenhaDigitada = await gerarHashSenha(senha_digitada);
 
+
+    const emailEncontrado = usuariosCadastrados.find(u => u.email.toLowerCase() === email_digitado)
     const usuarioEncontrado = usuariosCadastrados.find(u => 
       u.email.toLowerCase() === email_digitado && u.senha === hashSenhaDigitada
     );
@@ -243,7 +245,7 @@ if (formLogin) {
       formLogin.reset();
     } 
     // 3. SE O LOGIN FALHAR
-    else {
+    else if (emailEncontrado)  {
       let errosAtuais = Number(localStorage.getItem(chaveTentativas)) || 0;
       errosAtuais++;
 
@@ -258,6 +260,9 @@ if (formLogin) {
         // MOSTRA AS TENTATIVAS RESTANTES DE FORMA CLARA
         alert(`E-mail ou senha incorretos! Tentativas restantes: ${3 - errosAtuais}`);
       }
+    }
+    else{
+      alert("Usuário não encontrado")
     }
   });
 }
