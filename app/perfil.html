@@ -6,21 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Perfil - Minha Garagem</title>
 
-    <!-- Fontes e Ícones -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
-    <!-- CSS Externo -->
     <link rel="stylesheet" href="./css/perfil.css">
     <link rel="stylesheet" href="./css/sidebar.css">
 </head>
 
 <body class="corpo-perfil">
     <!-- Menu Lateral -->
-    <!-- INÍCIO DO MENU LATERAL PADRÃO -->
     <nav class="menu-lateral" id="menu-lateral" aria-label="Menu principal">
         <div class="cabecalho-menu">
             <div class="textos-cabecalho-menu">
@@ -33,199 +29,211 @@
         </div>
 
         <ul class="lista-menu">
-            <li>
-                <a href="./garagem.html" class="link-menu">
-                    <span class="material-symbols-outlined">garage</span>
-                    <span class="texto-link">Garagem</span>
-                </a>
-            </li>
-            <li>
-                <a href="./historico.html" class="link-menu">
-                    <span class="material-symbols-outlined">history</span>
-                    <span class="texto-link">Histórico</span>
-                </a>
-            </li>
-            <li>
-                <a href="./consultor-ia.html" class="link-menu">
-                    <span class="material-symbols-outlined">smart_toy</span>
-                    <span class="texto-link">Consultor IA</span>
-                </a>
-            </li>
-            <li>
-                <a href="./rede-parceira.html" class="link-menu">
-                    <span class="material-symbols-outlined">map</span>
-                    <span class="texto-link">Rede Parceira</span>
-                </a>
-            </li>
-            <li>
-                <a href="./planos.html" class="link-menu">
-                    <span class="material-symbols-outlined">card_membership</span>
-                    <span class="texto-link">Assinatura</span>
-                </a>
-            </li>
+            <li><a href="./garagem.html" class="link-menu"><span class="material-symbols-outlined">garage</span><span class="texto-link">Garagem</span></a></li>
+            <li><a href="./historico.html" class="link-menu"><span class="material-symbols-outlined">history</span><span class="texto-link">Histórico</span></a></li>
+            <li><a href="./consultor-ia.html" class="link-menu"><span class="material-symbols-outlined">smart_toy</span><span class="texto-link">Consultor IA</span></a></li>
+            <li><a href="./rede-parceira.html" class="link-menu"><span class="material-symbols-outlined">map</span><span class="texto-link">Rede Parceira</span></a></li>
+            <li><a href="./planos.html" class="link-menu"><span class="material-symbols-outlined">card_membership</span><span class="texto-link">Assinatura</span></a></li>
         </ul>
 
-        <!-- Rodapé com Perfil Fixo -->
         <div class="rodape-menu">
-            <!-- O link agora envolve todo o bloco do usuário -->
             <a href="./perfil.html" class="link-perfil-rodape">
-                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwKRfapvjjmleC3hV2HadgjtaopWGv_bl5NGYDjSurHNF6A96QKVOWDjx7L381HANqmDznhfTiLwkkJWYXpclqKAyXy9uCPeb4Xhlt5kDn93YFxiyPN36gKhEhkyiDHVYGmHcWTqe8iu1YFxFQT5lLIsQQNoh5C0X7dOhpVl8emhzgg-dVfRIMQq9OfYKT9inzB7XuWcZDPS3FRC4m5-kT1HB_7Q2YowzHbNqBkb0I6YcuDeapEFPIuw"
-                    alt="Foto do Perfil" class="avatar-menu">
+                <!-- ADICIONEI O ID "avatar-menu-lateral" AQUI PARA TROCAR ESSA FOTINHA TAMBÉM -->
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a0aabf'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" 
+                    alt="Foto do Perfil" class="avatar-menu" id="avatar-menu-lateral">
                 <div class="textos-usuario-menu">
-                    <span class="nome-usuario-menu">Rafael Moraes</span>
-                    <span class="plano-usuario-menu">Plano Plus</span>
+                    <span class="nome-usuario-menu" id="nome-usuario-menu">Mariana Silva</span>
+                    <span class="plano-usuario-menu" id="plano-usuario-menu">Plano Plus</span>
                 </div>
             </a>
+            <button class="botao-sair" id="btn-sair" type="button">
+                <span class="material-symbols-outlined">logout</span>
+                <span class="texto-sair">Sair da conta</span>
+            </button>
         </div>
     </nav>
-    <!-- FIM DO MENU LATERAL PADRÃO -->
 
     <!-- Conteúdo Principal -->
     <main class="conteudo-principal">
         <div class="container-perfil">
 
-            <!-- Cabeçalho da Página -->
             <header class="cabecalho-pagina">
                 <h2 class="titulo-pagina">Meu Perfil</h2>
                 <p class="subtitulo-pagina">Gestão de conta e segurança</p>
             </header>
 
-            <!-- Grade do Perfil (Bento Box Layout) -->
             <div class="grade-perfil">
 
-                <!-- Coluna Esquerda: Cartão do Herói (Avatar) -->
+                <!-- Coluna Esquerda: Avatar -->
                 <div class="coluna-heroi">
                     <section class="cartao-perfil cartao-interativo">
+                        
+                        <!-- NOVO INPUT INVISÍVEL AQUI -->
+                        <input type="file" id="input-foto-perfil" accept="image/*" style="display: none;">
 
-                        <div class="grupo-avatar">
-                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCShkrSA2FYG6cp2l7_hC9-QS9IUZEVfmrhuYtwP4x3OhyfRcDhH6-6hNVvHerAP4wrNmTTMP6Uhi5EGJ6FapxWoVKgW2mot6ACqjFmTb8yP9_oDwavKeiLhLJGx1dXZLwuZKQwBS9Hy22G7mWM0Fr6DxfrnXWJ0o9D55VUqnrzrX2HfhAW7z9BoeSdldIpZQEtQJw--6ODyKIk2qPKlrc05vcDZe3O1Cj8IqGJ08o60Va3wnLS1i-FkA"
-                                alt="Foto de perfil" class="imagem-avatar">
-                            <div class="overlay-avatar">
-                                <span class="material-symbols-outlined">photo_camera</span>
-                            </div>
+                        <!-- IDS ADICIONADOS NO GRUPO E NA IMAGEM -->
+                        <div class="grupo-avatar" id="container-avatar">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a0aabf'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" 
+                                alt="Foto de perfil" class="imagem-avatar" id="imagem-avatar-perfil">
+                            <div class="overlay-avatar"><span class="material-symbols-outlined">photo_camera</span></div>
                         </div>
 
-                        <h3 class="nome-destaque">Mariana Silva</h3>
-                        <p class="texto-membro">Membro desde Jan 2024</p>
+                        <h3 class="nome-destaque" id="nome-destaque-perfil">Mariana Silva</h3>
+                        <p class="texto-membro" id="texto-membro-perfil">Membro desde Jan 2024</p>
 
-                        <button class="botao-secundario botao-largura-total">
+                        <!-- ID ADICIONADO NO BOTÃO -->
+                        <button class="botao-secundario botao-largura-total" id="btn-alterar-foto" type="button">
                             <span class="material-symbols-outlined icone-pequeno">upload</span>
                             Alterar Foto
                         </button>
 
                         <div class="status-conta">
-                            <div class="item-status">
-                                <span class="material-symbols-outlined">shield_person</span>
-                                <span>Conta Verificada</span>
-                            </div>
-                            <div class="item-status">
-                                <span class="material-symbols-outlined">workspace_premium</span>
-                                <span>Plano Premium Ativo</span>
-                            </div>
+                            <div class="item-status"><span class="material-symbols-outlined">shield_person</span><span>Conta Verificada</span></div>
+                            <div class="item-status"><span class="material-symbols-outlined">workspace_premium</span><span>Plano Premium Ativo</span></div>
                         </div>
-
                     </section>
                 </div>
 
                 <!-- Coluna Direita: Formulários -->
                 <div class="coluna-formularios">
 
-                    <!-- Cartão: Dados Pessoais -->
+                    <!-- Dados Pessoais -->
                     <section class="cartao-formulario cartao-interativo">
-                        <h4 class="titulo-formulario">
-                            <span class="material-symbols-outlined icone-azul">person_edit</span>
-                            Dados Pessoais
-                        </h4>
-
+                        <h4 class="titulo-formulario"><span class="material-symbols-outlined icone-azul">person_edit</span>Dados Pessoais</h4>
                         <div class="grade-inputs">
                             <div class="grupo-input">
-                                <label class="rotulo-input">Nome Completo</label>
-                                <input type="text" class="campo-entrada" value="Mariana Silva">
+                                <label class="rotulo-input" for="input-nome">Nome Completo</label>
+                                <input type="text" class="campo-entrada" id="input-nome" readonly>
                             </div>
                             <div class="grupo-input">
-                                <label class="rotulo-input">E-mail</label>
-                                <input type="email" class="campo-entrada" value="mariana.silva@example.com">
+                                <label class="rotulo-input" for="input-email">E-mail</label>
+                                <input type="email" class="campo-entrada" id="input-email" readonly>
                             </div>
                             <div class="grupo-input">
-                                <label class="rotulo-input">Telefone</label>
-                                <input type="tel" class="campo-entrada" value="(11) 98765-4321">
+                                <label class="rotulo-input" for="input-telefone">Telefone</label>
+                                <input type="tel" class="campo-entrada" id="input-telefone" readonly>
                             </div>
                             <div class="grupo-input">
-                                <label class="rotulo-input">CPF</label>
-                                <input type="text" class="campo-entrada bloqueado" value="123.456.789-00" disabled>
+                                <label class="rotulo-input" for="input-cpf">CPF</label>
+                                <input type="text" class="campo-entrada bloqueado" id="input-cpf" disabled>
                                 <p class="texto-ajuda">*Para alterar o CPF, contate o suporte.</p>
                             </div>
                         </div>
                     </section>
 
-                    <!-- Cartão: Endereço -->
+                    <!-- Endereço -->
                     <section class="cartao-formulario cartao-interativo">
-                        <h4 class="titulo-formulario">
-                            <span class="material-symbols-outlined icone-azul">location_on</span>
-                            Endereço
-                        </h4>
-
+                        <h4 class="titulo-formulario"><span class="material-symbols-outlined icone-azul">location_on</span>Endereço</h4>
                         <div class="grade-inputs-endereco">
-                            <div class="grupo-input cep">
-                                <label class="rotulo-input">CEP</label>
-                                <input type="text" class="campo-entrada" value="01234-567">
-                            </div>
-                            <div class="grupo-input rua">
-                                <label class="rotulo-input">Rua</label>
-                                <input type="text" class="campo-entrada" value="Avenida Paulista">
-                            </div>
-                            <div class="grupo-input numero">
-                                <label class="rotulo-input">Número</label>
-                                <input type="text" class="campo-entrada" value="1000">
-                            </div>
-                            <div class="grupo-input complemento">
-                                <label class="rotulo-input">Complemento</label>
-                                <input type="text" class="campo-entrada" value="Apto 123">
-                            </div>
+                            <div class="grupo-input cep"><label class="rotulo-input" for="input-cep">CEP</label><input type="text" class="campo-entrada" id="input-cep" readonly></div>
+                            <div class="grupo-input rua"><label class="rotulo-input" for="input-rua">Rua</label><input type="text" class="campo-entrada" id="input-rua" readonly></div>
+                            <div class="grupo-input numero"><label class="rotulo-input" for="input-numero">Número</label><input type="text" class="campo-entrada" id="input-numero" readonly></div>
+                            <div class="grupo-input complemento"><label class="rotulo-input" for="input-complemento">Complemento</label><input type="text" class="campo-entrada" id="input-complemento" readonly></div>
                         </div>
                     </section>
 
-                    <!-- Cartão: Segurança -->
+                    <!-- Segurança -->
                     <section class="cartao-formulario cartao-interativo">
-                        <h4 class="titulo-formulario">
-                            <span class="material-symbols-outlined icone-azul">security</span>
-                            Segurança
-                        </h4>
+                        <h4 class="titulo-formulario"><span class="material-symbols-outlined icone-azul">security</span>Segurança</h4>
 
                         <div class="lista-seguranca">
-                            <div class="item-seguranca">
+                            
+                            <!-- Bloco Inicial: Informação da Senha -->
+                            <div class="item-seguranca" id="bloco-info-senha">
                                 <div class="textos-seguranca">
                                     <h5 class="titulo-item-seguranca">Senha de Acesso</h5>
-                                    <p class="descricao-item-seguranca">Última alteração há 3 meses</p>
+                                    <p class="descricao-item-seguranca">Gerencie sua senha de acesso ao CarWise</p>
                                 </div>
-                                <button class="botao-secundario-borda">Alterar Senha</button>
+                                <button class="botao-secundario-borda" id="btn-abrir-troca-senha" type="button">Alterar Senha</button>
                             </div>
 
+                            <!-- Formulário Oculto de Troca de Senha -->
+                            <div id="formulario-troca-senha" style="display: none; padding-top: 16px; border-top: 1px solid var(--borda-padrao);">
+                                
+                                <!-- PASSO 1: CONFIRMAR SENHA ATUAL -->
+                                <div id="passo-1-senha">
+                                    <div class="grade-inputs">
+                                        <div class="grupo-input" style="grid-column: span 12;">
+                                            <label class="rotulo-input" for="senha-atual">Digite sua Senha Atual para continuar</label>
+                                            <div class="container-campo-icone">
+                                                <input class="campo-entrada campo-com-icone" id="senha-atual" placeholder="••••••••" type="password">
+                                                <button class="botao-mostrar-senha" type="button" aria-label="Mostrar senha">
+                                                    <span class="material-symbols-outlined">visibility</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="rodape-acoes">
+                                        <button class="botao-texto" id="btn-cancelar-passo1" type="button">Cancelar</button>
+                                        <button class="botao-primario botao-sombra" id="btn-verificar-senha" type="button">Continuar</button>
+                                    </div>
+                                </div>
+
+                                <!-- PASSO 2: CRIAR NOVA SENHA -->
+                                <div id="passo-2-senha" style="display: none;">
+                                    <div class="grade-inputs">
+                                        <!-- Input: Nova Senha -->
+                                        <div class="grupo-input" style="grid-column: span 12;">
+                                            <label class="rotulo-input" for="senha-nova">Nova Senha</label>
+                                            <div class="container-campo-icone">
+                                                <input class="campo-entrada campo-com-icone" id="senha-nova" placeholder="••••••••" type="password">
+                                                <button class="botao-mostrar-senha" type="button" aria-label="Mostrar senha">
+                                                    <span class="material-symbols-outlined">visibility</span>
+                                                </button>
+                                            </div>
+                                            <div class="container-termometro" style="margin-top: 4px;">
+                                                <div style="width: 100%; background-color: #e0e0e0; height: 6px; border-radius: 4px; overflow: hidden;">
+                                                    <div id="strength-bar-perfil" style="height: 100%; width: 0%; transition: width 0.3s ease, background-color 0.3s ease;"></div>
+                                                </div>
+                                                <small id="strength-text-perfil" style="display: block; margin-top: 4px; font-weight: 500; font-size: 12px;"></small>
+                                            </div>
+                                        </div>
+
+                                        <!-- Input: Confirmar Nova Senha -->
+                                        <div class="grupo-input" style="grid-column: span 12;">
+                                            <label class="rotulo-input" for="confirmar-senha-nova">Confirmar Nova Senha</label>
+                                            <div class="container-campo-icone">
+                                                <input class="campo-entrada campo-com-icone" id="confirmar-senha-nova" placeholder="••••••••" type="password">
+                                                <button class="botao-mostrar-senha" type="button" aria-label="Mostrar senha">
+                                                    <span class="material-symbols-outlined">visibility</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="rodape-acoes">
+                                        <button class="botao-texto" id="btn-cancelar-passo2" type="button">Cancelar</button>
+                                        <button class="botao-primario botao-sombra" id="btn-salvar-senha" type="button">Atualizar Senha</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Autenticação 2FA -->
                             <div class="item-seguranca item-destaque">
                                 <div class="textos-seguranca">
                                     <h5 class="titulo-item-seguranca">
                                         Autenticação em Dois Fatores (2FA)
                                         <span class="badge-erro">Desativado</span>
                                     </h5>
-                                    <p class="descricao-item-seguranca">Adicione uma camada extra de segurança à sua
-                                        conta.</p>
+                                    <p class="descricao-item-seguranca">Adicione uma camada extra de segurança à sua conta.</p>
                                 </div>
                                 <button class="botao-primario">Ativar 2FA</button>
                             </div>
+
                         </div>
                     </section>
 
-                    <!-- Rodapé de Ações (Fixo/Sticky no fim) -->
+                    <!-- Rodapé de Ações de Edição do Perfil -->
                     <div class="rodape-acoes">
-                        <button class="botao-texto">Cancelar</button>
-                        <button class="botao-primario botao-sombra">Salvar Alterações</button>
+                        <button class="botao-primario" id="btn-editar">Editar Perfil</button>
+                        <button class="botao-texto" id="btn-cancelar" style="display: none;">Cancelar</button>
+                        <button class="botao-primario botao-sombra" id="btn-salvar" style="display: none;">Salvar Alterações</button>
                     </div>
 
                 </div>
             </div>
-        </div>
+        </div>      
     </main>
-    <script src="./js/sidebar.js"></script>
+    
+    <script src="./js/perfil.js" defer></script>
 </body>
-
 </html>

@@ -1,30 +1,32 @@
 /* =========================================
-   VARIÁVEIS GLOBAIS (Design System)
+   VARIÁVEIS GLOBAIS (Design System Unificado com Login)
 ========================================= */
 :root {
   /* Cores de Fundo e Superfície */
-  --cor-fundo: #f1f3fc; /* surface-container-low */
-  --cor-superficie: #ffffff; /* surface-container-lowest */
-  --cor-superficie-hover: #e6e8f1; /* surface-container-high */
-  --cor-superficie-inativa: #ebedf7; /* surface-container */
+  --cor-fundo: #f1f3fc; 
+  --cor-superficie: #ffffff; 
+  --cor-superficie-hover: #e6e8f1; 
+  --cor-superficie-inativa: #ebedf7; 
 
   /* Cores de Texto */
   --cor-texto-principal: #181c22;
   --cor-texto-secundario: #414753;
   --cor-texto-mutado: #717785;
 
-  /* Cores da Marca (Primary/Azul) */
-  --azul-primario: #0a73e0;
-  --azul-primario-hover: #005db8; /* surface-tint */
-  --azul-claro: #b6d0ff; /* secondary-container */
+  /* Cores da Marca (Puxadas do seu Login) */
+  --azul-primario: #005ab4;
+  --azul-primario-hover: #00458d;
+  --azul-primario-sombra: rgba(0, 90, 180, 0.39);
+  --azul-claro: #b6d0ff; 
   --azul-texto-claro: #001b3d;
 
-  /* Cores de Erro (2FA) */
+  /* Cores de Erro (2FA e Alertas) */
   --erro-fundo: #ffdad6;
   --erro-texto: #93000a;
 
-  /* Bordas e Sombras */
-  --borda-padrao: #e0e2eb; /* surface-variant */
+  /* Bordas e Sombras (Puxadas do seu Login) */
+  --borda-padrao: #c1c6d5; 
+  --borda-foco: #005ab4;
   --sombra-suave: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
 
   /* Micro-interações Globais */
@@ -113,12 +115,12 @@ a {
   padding: 12px 16px;
   border-radius: 8px;
   color: var(--cor-texto-secundario);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
 }
 .link-menu:hover:not(.ativo) {
   background-color: var(--cor-superficie-hover);
-  transform: translateX(4px); /* Animação fluida da Apple */
+  transform: translateX(4px); 
   color: var(--cor-texto-principal);
 }
 .link-menu.ativo {
@@ -131,14 +133,16 @@ a {
   padding: 0 16px;
   margin-top: auto;
 }
-.info-usuario-menu {
+
+.link-perfil-rodape {
   display: flex;
   align-items: center;
   gap: 12px;
   padding-top: 12px;
-  border-top: 1px solid var(--cor-superficie-hover);
+  border-top: 1px solid var(--borda-padrao);
   margin-top: 16px;
 }
+
 .avatar-menu {
   width: 40px;
   height: 40px;
@@ -150,12 +154,12 @@ a {
   flex-direction: column;
 }
 .nome-usuario-menu {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--cor-texto-principal);
 }
 .plano-usuario-menu {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--cor-texto-secundario);
 }
 
@@ -163,7 +167,7 @@ a {
    CONTEÚDO PRINCIPAL
 ========================================= */
 .conteudo-principal {
-  margin-left: 256px; /* Espaço do menu lateral */
+  margin-left: 256px; 
   flex: 1;
   padding: 32px;
   min-height: 100vh;
@@ -225,7 +229,7 @@ a {
 .cartao-interativo:hover {
   transform: translateY(-1px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  border-color: rgba(0, 0, 0, 0.03); /* Borda muito sutil ao hover */
+  border-color: rgba(0, 0, 0, 0.03); 
 }
 
 /* =========================================
@@ -332,23 +336,12 @@ a {
   grid-template-columns: repeat(12, 1fr);
   gap: 16px;
 }
-.cep,
-.numero {
-  grid-column: span 12;
-}
-.rua,
-.complemento {
-  grid-column: span 12;
-}
+.cep, .numero { grid-column: span 12; }
+.rua, .complemento { grid-column: span 12; }
+
 @media (min-width: 768px) {
-  .cep,
-  .numero {
-    grid-column: span 4;
-  }
-  .rua,
-  .complemento {
-    grid-column: span 8;
-  }
+  .cep, .numero { grid-column: span 4; }
+  .rua, .complemento { grid-column: span 8; }
 }
 
 .grupo-input {
@@ -362,10 +355,10 @@ a {
   color: var(--cor-texto-secundario);
 }
 
-/* Micro-interação: Campos de Entrada */
+/* Micro-interação: Campos de Entrada (Estilo igual ao Login) */
 .campo-entrada {
   width: 100%;
-  background-color: var(--cor-fundo);
+  background-color: var(--cor-superficie);
   border: 1px solid var(--borda-padrao);
   border-radius: 8px;
   padding: 10px 16px;
@@ -376,11 +369,12 @@ a {
   transition: var(--transicao-suave);
 }
 .campo-entrada:focus {
-  border-color: var(--azul-primario);
-  box-shadow: 0 0 0 1px var(--azul-primario);
+  border-color: var(--borda-foco);
+  box-shadow: 0 0 0 2px rgba(0, 90, 180, 0.2);
   background-color: var(--cor-superficie);
 }
-.campo-entrada.bloqueado {
+.campo-entrada.bloqueado,
+.campo-entrada[readonly] {
   background-color: var(--cor-superficie-inativa);
   color: var(--cor-texto-mutado);
   cursor: not-allowed;
@@ -392,7 +386,49 @@ a {
   margin-top: 4px;
 }
 
-/* Segurança */
+/* =========================================
+   INPUTS DE SENHA (OLHINHO)
+========================================= */
+.container-campo-icone {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.campo-com-icone {
+  padding-right: 40px;
+}
+
+.botao-mostrar-senha {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cor-texto-mutado);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.botao-mostrar-senha:hover {
+  color: var(--cor-texto-principal);
+}
+
+/* Remove botões nativos do Edge/IE */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
+
+/* =========================================
+   SEGURANÇA (2FA e Senha)
+========================================= */
 .lista-seguranca {
   display: flex;
   flex-direction: column;
@@ -424,8 +460,8 @@ a {
   gap: 4px;
 }
 .titulo-item-seguranca {
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 600;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -445,7 +481,7 @@ a {
 }
 
 /* =========================================
-   BOTÕES (MICRO-INTERAÇÕES)
+   BOTÕES GERAIS
 ========================================= */
 .botao-primario {
   background-color: var(--azul-primario);
@@ -453,11 +489,12 @@ a {
   border: none;
   padding: 10px 24px;
   border-radius: 8px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
 }
 .botao-primario:hover {
   background-color: var(--azul-primario-hover);
+  box-shadow: 0 4px 14px 0 var(--azul-primario-sombra);
 }
 
 .botao-secundario {
@@ -466,7 +503,7 @@ a {
   border: none;
   padding: 10px 16px;
   border-radius: 8px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -481,13 +518,13 @@ a {
 }
 
 .botao-secundario-borda {
-  background-color: var(--cor-superficie-inativa);
+  background-color: var(--cor-superficie);
   color: var(--cor-texto-principal);
-  border: 1px solid var(--borda-clara);
+  border: 1px solid var(--borda-padrao);
   padding: 8px 16px;
   border-radius: 8px;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
 }
 .botao-secundario-borda:hover {
   background-color: var(--cor-superficie-hover);
@@ -499,7 +536,7 @@ a {
   color: var(--cor-texto-secundario);
   padding: 10px 24px;
   border-radius: 8px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
 }
 .botao-texto:hover {
@@ -520,4 +557,29 @@ a {
   align-items: center;
   gap: 16px;
   padding-top: 16px;
+}
+
+/* Botão de Sair (Menu Lateral) */
+.botao-sair {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+  padding: 10px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: var(--cor-texto-secundario);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+}
+.botao-sair:hover {
+  background-color: var(--erro-fundo);
+  color: var(--erro-texto);
+}
+.botao-sair .material-symbols-outlined {
+  font-size: 20px;
 }

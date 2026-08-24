@@ -240,9 +240,13 @@ if (formLogin) {
     // 2. SE O LOGIN FOR BEM SUCEDIDO
     if (usuarioEncontrado) {
       alert(`Você logou com sucesso! Bem-vindo(a), ${usuarioEncontrado.nome}!`);
+      localStorage.setItem("logado", true); 
       localStorage.removeItem(chaveTentativas);
       localStorage.removeItem(chaveBloqueio);
+      localStorage.setItem("usuarioLogado", JSON.stringify(usuarioEncontrado));
       formLogin.reset();
+       window.location.href = "../../app/perfil.html"; 
+
     } 
     // 3. SE O LOGIN FALHAR
     else if (emailEncontrado)  {
