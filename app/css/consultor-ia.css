@@ -1,0 +1,517 @@
+/* =========================================
+   VARIÁVEIS GLOBAIS (Design System)
+========================================= */
+:root {
+  /* Cores Apple Light Mode */
+  --cor-fundo: #f5f5f7;
+  --cor-superficie: #ffffff;
+  --cor-superficie-variante: #f1f3fc;
+  --cor-superficie-hover: #e6e8f1;
+
+  --azul-apple: #0071e3;
+  --azul-apple-hover: #005bb5;
+  --azul-claro: rgba(0, 113, 227, 0.1);
+
+  --cor-texto-principal: #181c22;
+  --cor-texto-secundario: #414753;
+  --cor-texto-mutado: #717785;
+
+  --verde-sucesso: #22c55e;
+  --borda-suave: rgba(0, 0, 0, 0.08);
+  --borda-muito-suave: rgba(0, 0, 0, 0.04);
+
+  /* Regras de Micro-interações Globais */
+  --transicao-padrao: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* =========================================
+   RESETS BÁSICOS
+========================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body.corpo-app {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro", "Inter", sans-serif;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto-principal);
+  display: flex;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Utilitário de Ícones do Google */
+.material-symbols-outlined {
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
+}
+.icone-preenchido {
+  font-variation-settings: "FILL" 1;
+}
+
+/* =========================================
+   MENU LATERAL (Sidebar)
+========================================= */
+
+/* =========================================
+   ÁREA DE TRABALHO GERAL E CLASSES COMPARTILHADAS
+========================================= */
+.area-trabalho {
+  padding: 96px 32px 32px 32px;
+  display: flex;
+  gap: 24px;
+  flex: 1;
+  height: 100vh;
+}
+
+/* MICRO-INTERAÇÃO PRINCIPAL: ELEVAÇÃO DE CARDS */
+.cartao-interativo {
+  background-color: var(--cor-superficie);
+  border-radius: 16px;
+  border: 1px solid var(--borda-muito-suave);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  transition: var(--transicao-padrao);
+}
+.cartao-interativo:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.08),
+    0 4px 6px -2px rgba(0, 0, 0, 0.04);
+}
+/* Uma elevação mais sutil para balões de conversa */
+.cartao-interativo-leve {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: var(--transicao-padrao);
+}
+.cartao-interativo-leve:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================================
+   COLUNA ESQUERDA: CHAT IA
+========================================= */
+.secao-chat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.cabecalho-chat {
+  padding: 24px;
+  border-bottom: 1px solid var(--borda-suave);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--cor-superficie);
+}
+.info-ia {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icone-avatar-ia {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--azul-claro);
+  color: var(--azul-apple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.icone-avatar-ia-pequeno {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--azul-claro);
+  color: var(--azul-apple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.textos-ia h2 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+}
+.status-online {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+.ponto-verde {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--verde-sucesso);
+}
+.status-online span {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--cor-texto-mutado);
+}
+
+/* Área de Mensagens */
+.area-mensagens {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background-color: var(--cor-superficie);
+}
+
+.linha-mensagem-usuario {
+  display: flex;
+  justify-content: flex-end;
+}
+.balao-usuario {
+  background-color: var(--azul-apple);
+  color: var(--cor-superficie);
+  padding: 16px;
+  border-radius: 16px 16px 2px 16px;
+  max-width: 80%;
+  font-size: 14px;
+}
+
+.linha-mensagem-ia {
+  display: flex;
+  justify-content: flex-start;
+}
+.container-resposta-ia {
+  display: flex;
+  gap: 12px;
+  max-width: 85%;
+}
+.conteudo-resposta-ia {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.balao-ia {
+  background-color: var(--cor-superficie-variante);
+  color: var(--cor-texto-principal);
+  padding: 16px;
+  border-radius: 16px 16px 16px 2px;
+  border: 1px solid var(--borda-suave);
+  font-size: 14px;
+}
+
+/* Cartão de Ação Sugerida no Chat */
+.cartao-acao-sugerida {
+  background-color: var(--cor-superficie);
+  border: 1px solid rgba(0, 113, 227, 0.2);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.info-acao {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.titulo-acao {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--azul-apple);
+  margin-bottom: 2px;
+}
+.descricao-acao {
+  font-size: 13px;
+  color: var(--cor-texto-secundario);
+}
+
+/* Micro-interação: Botão Primário */
+.botao-primario {
+  padding: 8px 16px;
+  background-color: var(--azul-apple);
+  color: var(--cor-superficie);
+  border-radius: 999px;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transicao-padrao);
+}
+.botao-primario:hover {
+  background-color: var(--azul-apple-hover);
+}
+
+/* Input de Chat */
+.area-input {
+  padding: 16px;
+  border-top: 1px solid var(--borda-suave);
+  background-color: var(--cor-superficie);
+}
+.container-input {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: var(--cor-superficie-variante);
+  border-radius: 999px;
+  padding: 8px 16px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: var(--transicao-padrao);
+}
+.container-input:focus-within {
+  border-color: rgba(0, 113, 227, 0.5);
+}
+
+.botao-anexo {
+  background: transparent;
+  border: none;
+  color: var(--cor-texto-mutado);
+  cursor: pointer;
+  transition: var(--transicao-padrao);
+}
+.botao-anexo:hover {
+  color: var(--azul-apple);
+}
+
+.campo-mensagem {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  padding: 8px;
+  color: var(--cor-texto-principal);
+}
+
+.botao-primario-redondo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--azul-apple);
+  color: var(--cor-superficie);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transicao-padrao);
+}
+.botao-primario-redondo:hover {
+  background-color: var(--azul-apple-hover);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.botao-primario-redondo span {
+  font-size: 18px;
+}
+
+/* =========================================
+   COLUNA DIREITA: CONTEXTO (BENTO BOX)
+========================================= */
+.secao-contexto {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Estilos de Cartões do Contexto */
+.cartao-contexto,
+.widget-quadrado,
+.widget-retangular,
+.widget-mapa {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+.cartao-contexto {
+  padding: 20px;
+}
+
+.rotulo-secao {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--cor-texto-mutado);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.info-veiculo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.icone-veiculo {
+  width: 48px;
+  height: 48px;
+  background-color: var(--cor-superficie-variante);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.icone-veiculo span {
+  font-size: 24px;
+  color: var(--azul-apple);
+}
+.textos-veiculo h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+}
+.textos-veiculo p {
+  font-size: 13px;
+  color: var(--cor-texto-mutado);
+}
+
+/* Grid Bento Box */
+.grade-bento {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.widget-quadrado {
+  justify-content: space-between;
+  aspect-ratio: 1 / 1;
+}
+.widget-quadrado.gradiente {
+  background: linear-gradient(
+    to bottom right,
+    rgba(182, 208, 255, 0.5),
+    rgba(0, 113, 227, 0.05)
+  );
+}
+
+.icone-mutado {
+  font-size: 20px;
+  color: var(--cor-texto-mutado);
+  margin-bottom: 8px;
+}
+.icone-destaque {
+  font-size: 20px;
+  color: var(--azul-apple);
+  margin-bottom: 8px;
+}
+
+.rotulo-widget {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--cor-texto-mutado);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+.valor-widget {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--cor-texto-principal);
+}
+.valor-widget span {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--cor-texto-mutado);
+}
+.valor-widget.texto-destaque {
+  font-size: 15px;
+  color: var(--azul-apple);
+  line-height: 1.2;
+}
+
+.widget-retangular {
+  grid-column: span 2;
+}
+.cabecalho-widget {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.titulo-icone {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.titulo-icone span {
+  margin-bottom: 0;
+  font-size: 18px;
+}
+.titulo-icone p {
+  margin-bottom: 0;
+  font-size: 12px;
+}
+.valor-pequeno {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--cor-texto-principal);
+}
+
+.barra-progresso {
+  width: 100%;
+  height: 8px;
+  background-color: var(--cor-superficie-hover);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.progresso-preenchido {
+  height: 100%;
+  background-color: var(--azul-apple);
+  border-radius: 999px;
+}
+.texto-auxiliar {
+  font-size: 13px;
+  color: var(--cor-texto-secundario);
+}
+
+/* =========================================
+   WIDGET: BASE DE CONHECIMENTO (Substituiu o Mapa)
+========================================= */
+.widget-conhecimento {
+  flex: 1;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, var(--cor-superficie), var(--cor-superficie-variante));
+  padding: 10%;
+}
+
+.conteudo-conhecimento {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.icone-conhecimento {
+  font-size: 18px;
+  color: var(--azul-apple);
+}
+
+.texto-auxiliar-conhecimento {
+  font-size: 12px;
+  color: var(--cor-texto-mutado);
+  text-align: center;
+  max-width: 80%;
+  line-height: 1.4;
+}
+
+/* Data de atualização do Odômetro */
+.data-atualizacao {
+  font-size: 10px;
+  color: var(--cor-texto-mutado);
+  margin-top: 4px;
+  font-weight: 500;
+}

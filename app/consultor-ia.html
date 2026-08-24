@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultor IA - Minha Garagem</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="./css/consultor-ia.css">
+    <link rel="stylesheet" href="./css/sidebar.css">
+</head>
+
+<body class="corpo-app">
+    <!-- INÍCIO DO MENU LATERAL PADRÃO -->
+    <nav class="menu-lateral" id="menu-lateral" aria-label="Menu principal">
+        <div class="cabecalho-menu">
+            <div class="textos-cabecalho-menu">
+                <h1 class="titulo-menu">CarWise</h1>
+                <p class="subtitulo-menu">Premium Auto Care</p>
+            </div>
+            <button class="botao-recolher" id="btn-recolher" aria-label="Recolher menu">
+                <span class="material-symbols-outlined icone-recolher" id="icone-recolher">chevron_left</span>
+            </button>
+        </div>
+
+        <ul class="lista-menu">
+            <li>
+                <a href="./garagem.html" class="link-menu">
+                    <span class="material-symbols-outlined">garage</span>
+                    <span class="texto-link">Garagem</span>
+                </a>
+            </li>
+            <li>
+                <a href="./historico.html" class="link-menu">
+                    <span class="material-symbols-outlined">history</span>
+                    <span class="texto-link">Histórico</span>
+                </a>
+            </li>
+            <li>
+                <a href="./consultor-ia.html" class="link-menu">
+                    <span class="material-symbols-outlined">smart_toy</span>
+                    <span class="texto-link">Consultor IA</span>
+                </a>
+            </li>
+            <li>
+                <a href="./parceiros.html" class="link-menu">
+                    <span class="material-symbols-outlined">map</span>
+                    <span class="texto-link">Rede Parceira</span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="rodape-menu">
+            <a href="./perfil.html" class="link-perfil-rodape">
+                <span class="material-symbols-outlined">
+                    account_circle
+                </span>
+                <div class="textos-usuario-menu">
+                    <span class="nome-usuario-menu">Rafael Moraes</span>
+                    <span class="plano-usuario-menu">Plano Premium</span>
+                </div>
+            </a>
+        </div>
+    </nav>
+    <!-- FIM DO MENU LATERAL PADRÃO -->
+
+    <div class="container-aplicacao">
+
+
+        <main class="area-trabalho">
+
+            <section class="secao-chat cartao-interativo">
+                <div class="cabecalho-chat">
+                    <div class="info-ia">
+                        <div class="icone-avatar-ia">
+                            <span class="material-symbols-outlined">smart_toy</span>
+                        </div>
+                        <div class="textos-ia">
+                            <h2>Consultor IA</h2>
+                            <div class="status-online">
+                                <div class="ponto-verde"></div>
+                                <span>Online</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="area-mensagens">
+                    <div class="linha-mensagem-usuario">
+                        <div class="balao-usuario cartao-interativo-leve">
+                            <p>Acabou de acender uma luz amarela no painel, parece um motorzinho. O que pode ser?</p>
+                        </div>
+                    </div>
+
+                    <div class="linha-mensagem-ia">
+                        <div class="container-resposta-ia">
+                            <div class="icone-avatar-ia-pequeno">
+                                <span class="material-symbols-outlined">smart_toy</span>
+                            </div>
+                            <div class="conteudo-resposta-ia">
+                                <div class="balao-ia cartao-interativo-leve">
+                                    <p>Olá! Essa é a luz de injeção eletrônica. No seu Polo Highline, isso geralmente
+                                        indica combustível de baixa qualidade ou necessidade de checar as velas. Como
+                                        você é membro do Clube, a sua revisão preventiva já cobre essa análise. Deseja
+                                        que eu agende um horário na nossa oficina credenciada mais próxima?</p>
+                                </div>
+
+                                <!-- Card de Ação Sugerida -->
+                                <div class="cartao-acao-sugerida cartao-interativo">
+                                    <div class="info-acao">
+                                        <div class="icone-avatar-ia">
+                                            <span class="material-symbols-outlined">calendar_month</span>
+                                        </div>
+                                        <div class="textos-acao">
+                                            <p class="titulo-acao">Ação Rápida Sugerida</p>
+                                            <p class="descricao-acao">Agendar na Oficina Jardim (A 2km). Amanhã às 14h.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <button class="botao-primario">Agendar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Área de Input -->
+                <div class="area-input">
+                    <div class="container-input">
+                        <button class="botao-anexo" aria-label="Anexar arquivo">
+                            <span class="material-symbols-outlined">attach_file</span>
+                        </button>
+                        <input type="text" class="campo-mensagem"
+                            placeholder="Relate um problema ou tire uma dúvida...">
+                        <button class="botao-enviar botao-primario-redondo" aria-label="Enviar mensagem">
+                            <span class="material-symbols-outlined">send</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Coluna Direita: Contexto do Veículo (Bento Box) -->
+            <aside class="secao-contexto">
+
+                <!-- Card do Veículo -->
+                <div class="cartao-contexto cartao-interativo">
+                    <h3 class="rotulo-secao">Seu Veículo</h3>
+                    <div class="info-veiculo">
+                        <div class="icone-veiculo">
+                            <span class="material-symbols-outlined">directions_car</span>
+                        </div>
+                        <div class="textos-veiculo">
+                            <h4>VW Polo Highline</h4>
+                            <p>2023 • Flex</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grade Bento Box -->
+                <div class="grade-bento">
+                    <!-- Widget Odômetro (Com Data de Atualização) -->
+                    <div class="widget-quadrado cartao-interativo">
+                        <span class="material-symbols-outlined icone-mutado">speed</span>
+                        <div class="info-widget">
+                            <p class="rotulo-widget">Odômetro</p>
+                            <p class="valor-widget">15.230 <span>km</span></p>
+                            <p class="data-atualizacao">Atualizado em 15/Mar</p>
+                        </div>
+                    </div>
+
+                    <!-- Widget Clube (Estrela trocada por Escudo) -->
+                    <div class="widget-quadrado gradiente cartao-interativo">
+                        <span class="material-symbols-outlined icone-destaque">shield</span>
+                        <div class="info-widget">
+                            <p class="rotulo-widget">Status Clube</p>
+                            <p class="valor-widget texto-destaque">Assinatura Ativa</p>
+                        </div>
+                    </div>
+
+                    <!-- Widget Revisão -->
+                    <div class="widget-retangular cartao-interativo">
+                        <div class="cabecalho-widget">
+                            <div class="titulo-icone">
+                                <span class="material-symbols-outlined icone-mutado">build</span>
+                                <p class="rotulo-widget">Próxima Revisão</p>
+                            </div>
+                            <span class="valor-pequeno">20.000 km</span>
+                        </div>
+                        <div class="barra-progresso">
+                            <div class="progresso-preenchido" style="width: 75%"></div>
+                        </div>
+                        <p class="texto-auxiliar">Em 4.770 km ou 3 meses</p>
+                    </div>
+                </div>
+
+                <div class="widget-conhecimento cartao-interativo">
+                    <p class="rotulo-secao">Conexão IA</p>
+                    <div class="conteudo-conhecimento">
+                        <div class="badge-status">
+                            <span class="material-symbols-outlined icone-conhecimento">menu_book</span>
+                            <span>Manual Sincronizado</span>
+                        </div>
+                        <p class="texto-auxiliar-conhecimento">Dados oficiais da montadora ativos para análise.</p>
+                    </div>
+                </div>
+
+            </aside>
+        </main>
+    </div>
+    <script src="./js/sidebar.js" defer></script>
+    <script src="./js/ia.js" defer></script>
+</body>
+
+</html>
