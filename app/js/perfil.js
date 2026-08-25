@@ -4,6 +4,19 @@
  * OBJETIVO: Gerenciar a sessão, carregamento de dados, edição de perfil,
  *           upload e compressão de foto de perfil e fluxo seguro de troca de senha.
  * ARQUITETURA: 100% Front-end (Vanilla JavaScript + LocalStorage + API Web Crypto)
+ *
+ * CORREÇÕES APLICADAS:
+ * 1. O botão "btnSalvar" tinha DOIS addEventListener('click', ...) diferentes
+ *    (um sem validação na seção 4, outro com validação na seção 6). Como
+ *    addEventListener empilha handlers em vez de substituir, os dois rodavam
+ *    no mesmo clique: o primeiro salvava sem validar (permitindo e-mail
+ *    inválido) e o segundo validava e disparava um segundo alert. Agora existe
+ *    apenas UM handler para btnSalvar, com validação.
+ * 2. A lógica que estava duplicada dentro do segundo handler de btnSalvar
+ *    (rotulada como "PASSO 2: valida a nova senha... hash SHA-256") não fazia
+ *    nada com senha de fato — era uma cópia do salvamento de dados pessoais.
+ *    Isso foi movido para um handler próprio do btnSalvarSenha, que agora
+ *    realmente valida e salva a nova senha com hash SHA-256.
  * ============================================================================
  */
 
@@ -38,6 +51,19 @@ function calcularForcaSenha(senha) {
     if (/[0-9]/.test(senha)) forca++;
     if (/[^A-Za-z0-9]/.test(senha)) forca++;
     return forca;
+}
+
+/**
+ * Valida o formato de um e-mail com regex + checagens extras de pontos duplicados/mal posicionados.
+ * @param {string} email
+ * @returns {boolean}
+ */
+function verificarFormatoEmail(email) {
+    const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (email.includes("..") || email.includes("@.") || email.includes(".@")) {
+        return false;
+    }
+    return regexEmail.test(email);
 }
 
 /**
@@ -77,6 +103,31 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputNumero = document.getElementById("input-numero");
     const inputComplemento = document.getElementById("input-complemento");
 
+    // Máscara para aceitar apenas letras no Nome
+    if (inputNome) {
+        inputNome.addEventListener("input", function () {
+            this.value = this.value.replace(/[^\p{L}\s]+/gu, "");
+        });
+    }
+
+    // Máscara dinâmica para o Telefone
+    if (inputTelefone) {
+        inputTelefone.addEventListener("input", function () {
+            let v = this.value.replace(/\D/g, "");
+            if (v.length > 11) v = v.slice(0, 11);
+
+            if (v.length > 10) {
+                this.value = v.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3");
+            } else if (v.length > 6) {
+                this.value = v.replace(/^(\d{2})(\d{4})(\d{0,4})$/, "($1) $2-$3");
+            } else if (v.length > 2) {
+                this.value = v.replace(/^(\d{2})(\d{0,4})$/, "($1) $2");
+            } else {
+                this.value = v;
+            }
+        });
+    }
+
     // Botões de ação do Perfil
     const btnEditar = document.getElementById("btn-editar");
     const btnCancelar = document.getElementById("btn-cancelar");
@@ -95,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const formTrocaSenha = document.getElementById("formulario-troca-senha");
     const passo1Senha = document.getElementById("passo-1-senha");
     const passo2Senha = document.getElementById("passo-2-senha");
-    
+
     const btnAbrirTrocaSenha = document.getElementById("btn-abrir-troca-senha");
     const btnVerificarSenha = document.getElementById("btn-verificar-senha");
     const btnCancelarPasso1 = document.getElementById("btn-cancelar-passo1");
@@ -105,10 +156,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputSenhaAtual = document.getElementById("senha-atual");
     const inputSenhaNova = document.getElementById("senha-nova");
     const inputConfSenhaNova = document.getElementById("confirmar-senha-nova");
-    
+
     const strengthBar = document.getElementById("strength-bar-perfil");
     const strengthText = document.getElementById("strength-text-perfil");
-
 
     /**
      * ========================================================================
@@ -188,28 +238,68 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Salva as alterações feitas nos dados pessoais no localStorage
+    /**
+     * ÚNICO handler de salvamento dos Dados Pessoais.
+     * Valida campos obrigatórios, formato de e-mail, tamanho do telefone e
+     * duplicidade de e-mail ANTES de gravar qualquer coisa no localStorage.
+     */
     if (btnSalvar) {
         btnSalvar.addEventListener("click", () => {
-            const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-            const emailAntigo = usuarioLogado.email; 
+            const nome = inputNome.value.trim();
+            const email = inputEmail.value.toLowerCase().trim();
+            const telefone = inputTelefone.value;
+            const cep = inputCep.value;
+            const rua = inputRua.value;
+            const numero = inputNumero.value;
+            const complemento = inputComplemento.value;
 
-            // Atualiza os dados no objeto da sessão
-            usuarioLogado.nome = inputNome.value;
-            usuarioLogado.email = inputEmail.value;
-            usuarioLogado.telefone = inputTelefone.value;
-            usuarioLogado.cep = inputCep.value;
-            usuarioLogado.rua = inputRua.value;
-            usuarioLogado.numero = inputNumero.value;
-            usuarioLogado.complemento = inputComplemento.value;
+            const telefoneNumeros = telefone.replace(/\D/g, "");
+
+            // 1. Validação de campos vazios
+            if (!nome || !email || !telefone) {
+                alert("Nome, E-mail e Telefone são obrigatórios!");
+                return;
+            }
+
+            // 2. Validação de formato de E-mail
+            if (!verificarFormatoEmail(email)) {
+                alert("Por favor, insira um e-mail válido!");
+                return;
+            }
+
+            // 3. Validação de tamanho do Telefone
+            if (telefoneNumeros.length < 10) {
+                alert("Por favor, insira um telefone válido com DDD.");
+                return;
+            }
+
+            const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+            const emailAntigo = usuarioLogado.email;
+            let usuariosCadastrados = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+            // 4. Verifica se o novo e-mail já está sendo usado por OUTRO usuário
+            if (email !== emailAntigo) {
+                const emailExiste = usuariosCadastrados.some(u => u.email === email);
+                if (emailExiste) {
+                    alert("Este e-mail já está vinculado a outra conta!");
+                    return;
+                }
+            }
+
+            // Tudo certo! Atualiza os dados no objeto da sessão
+            usuarioLogado.nome = nome;
+            usuarioLogado.email = email;
+            usuarioLogado.telefone = telefone;
+            usuarioLogado.cep = cep;
+            usuarioLogado.rua = rua;
+            usuarioLogado.numero = numero;
+            usuarioLogado.complemento = complemento;
 
             // Salva na sessão atual
             localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
 
             // Atualiza também no banco de dados geral (array "usuarios")
-            let usuariosCadastrados = JSON.parse(localStorage.getItem("usuarios")) || [];
             const index = usuariosCadastrados.findIndex(u => u.email === emailAntigo);
-            
             if (index !== -1) {
                 usuariosCadastrados[index] = { ...usuariosCadastrados[index], ...usuarioLogado };
                 localStorage.setItem("usuarios", JSON.stringify(usuariosCadastrados));
@@ -220,7 +310,6 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Perfil atualizado com sucesso!");
         });
     }
-
 
     /**
      * ========================================================================
@@ -236,7 +325,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (inputFoto) {
         inputFoto.addEventListener("change", (event) => {
             const arquivo = event.target.files[0];
-            
+
             if (arquivo && arquivo.type.startsWith("image/")) {
                 const leitor = new FileReader();
 
@@ -297,7 +386,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-
     /**
      * ========================================================================
      * 6. LÓGICA DE ALTERAÇÃO DE SENHA (Fluxo Seguro em 2 Passos)
@@ -315,8 +403,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (strengthText) strengthText.textContent = "";
 
         formTrocaSenha.style.display = "none";
-        passo1Senha.style.display = "block"; 
-        passo2Senha.style.display = "none";  
+        passo1Senha.style.display = "block";
+        passo2Senha.style.display = "none";
         blocoInfoSenha.style.display = "flex";
     }
 
@@ -367,7 +455,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const botoesMostrarSenha = document.querySelectorAll('.botao-mostrar-senha');
     botoesMostrarSenha.forEach(botao => {
         botao.addEventListener('click', function () {
-            const input = this.previousElementSibling; 
+            const input = this.previousElementSibling;
             const icone = this.querySelector('.material-symbols-outlined');
 
             if (input.type === 'password') {
@@ -412,57 +500,59 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /**
-     * PASSO 2: Valida a nova senha, checa se é diferente da atual,
-     * criptografa em SHA-256 e atualiza no localStorage e no array geral.
+     * PASSO 2: Valida a nova senha (obrigatória, força mínima, confirmação
+     * igual e diferente da senha atual), gera o hash SHA-256 e persiste tanto
+     * na sessão ("usuarioLogado") quanto no array geral ("usuarios").
      */
     if (btnSalvarSenha) {
         btnSalvarSenha.addEventListener("click", async () => {
-            const atual = inputSenhaAtual.value;
-            const nova = inputSenhaNova.value;
-            const confNova = inputConfSenhaNova.value;
+            const senhaAtual = inputSenhaAtual.value;
+            const senhaNova = inputSenhaNova.value;
+            const confirmacao = inputConfSenhaNova.value;
 
-            if (!nova || !confNova) {
-                alert("Por favor, preencha a nova senha e a confirmação.");
+            // 1. Campos obrigatórios
+            if (!senhaNova || !confirmacao) {
+                alert("Preencha a nova senha e a confirmação.");
                 return;
             }
 
-            if (nova !== confNova) {
-                alert("A nova senha e a confirmação não são iguais.");
+            // 2. Confirmação precisa bater com a nova senha
+            if (senhaNova !== confirmacao) {
+                alert("A confirmação não coincide com a nova senha.");
                 return;
             }
 
-            // Impede o usuário de reutilizar exatamente a mesma senha anterior
-            if (nova === atual) {
-                alert("A nova senha não pode ser igual à senha atual. Escolha uma senha diferente.");
+            // 3. Força mínima aceitável (evita senhas fracas demais)
+            if (calcularForcaSenha(senhaNova) < 2) {
+                alert("A nova senha é muito fraca. Use letras maiúsculas, minúsculas, números ou símbolos.");
                 return;
             }
 
-            if (calcularForcaSenha(nova) <= 1) {
-                alert("Por favor, escolha uma senha mais forte.");
+            // 4. A nova senha não pode ser igual à atual
+            if (senhaNova === senhaAtual) {
+                alert("A nova senha deve ser diferente da senha atual.");
                 return;
             }
 
-            // Gera o novo hash da senha
-            const hashNovaSenha = await gerarHashSenha(nova);
             const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-            
-            // Atualiza na sessão
-            usuarioLogado.senha = hashNovaSenha;
+            const hashSenhaNova = await gerarHashSenha(senhaNova);
+
+            // Atualiza a senha na sessão atual
+            usuarioLogado.senha = hashSenhaNova;
             localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
 
-            // Atualiza no banco geral de usuários cadastrados
+            // Atualiza também no banco de dados geral (array "usuarios")
             let usuariosCadastrados = JSON.parse(localStorage.getItem("usuarios")) || [];
             const index = usuariosCadastrados.findIndex(u => u.email === usuarioLogado.email);
             if (index !== -1) {
-                usuariosCadastrados[index].senha = hashNovaSenha;
+                usuariosCadastrados[index].senha = hashSenhaNova;
                 localStorage.setItem("usuarios", JSON.stringify(usuariosCadastrados));
             }
 
+            resetarFormularioSenha();
             alert("Senha alterada com sucesso!");
-            resetarFormularioSenha(); // Limpa tudo e fecha o bloco
         });
     }
-
 
     /**
      * ========================================================================
@@ -473,8 +563,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (btnSair) {
         btnSair.addEventListener("click", () => {
             localStorage.removeItem("logado");
-            localStorage.removeItem("usuarioLogado"); 
-            window.location.replace(LOGIN_URL); 
+            localStorage.removeItem("usuarioLogado");
+            window.location.replace(LOGIN_URL);
         });
     }
 });
