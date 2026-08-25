@@ -1,182 +1,232 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>CarWise</title>
-    <link rel="stylesheet" href="assets/css/main.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-
-    <!--  O 'defer' faz o script rodar só DEPOIS do HTML carregar,
-   evitando erros e deixando o site mais rápido -->
-    <script src="assets/js/main.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <link href="/public/css/index.css" rel="stylesheet">
+    <link href="/public/css/global.css" rel="stylesheet">
 </head>
 
-<body id="home"> <!-- style="background-color: black;"> -->   <!-- ID para o link de navegação -->
-    <header>
-        <nav class="top_navbar"> <!-- Barra de navegação -->
-
-                <a href="index.html"> <!-- Link para a página inicial -->
-                    <p class="logotipo">CarWise</p>
-                </a>    
-            
-            <ul class="nav-links"> <!-- Links de navegação -->
-                <li><a href="#catalogo">Cátologo</a></li> 
-                <li><a href="#passportecarwise">Passaporte CarWise</a></li>
-                <li><a href="#comprar">Quem Somos</a></li>
-                <li><a href="#wi">Contato</a></li>
-            </ul>
-
-            <div class="login"> <!-- Ícone de login e link para a página de login -->
-                <a href="sign.html" target="_blank" class="login-cadastrar"> <button>Cadastrar</button></a>
-                <a href="login.html" target="_blank" class="login-entrar"> <button>Entrar</button></a>
+<body>
+    <div class="pagina">
+        <header class="cabecalho fundo-desfocado">
+            <a class="cabecalho-marca" href="./index.html">
+                <h2 class="cabecalho-titulo">CarWise</h2>
+            </a>
+            <nav class="cabecalho-navegacao">
+                <a class="cabecalho-link" href="./planos.html">Planos</a>
+                <a class="cabecalho-link" href="./catalogo.html">Catalogo</a>
+                <a class="cabecalho-link" href="./rede-parceira.html">Rede Parceira</a>
+            </nav>
+            <div class="cabecalho-acoes">
+                <a class="botao-contorno" href="./login.html?modo=cadastro">Cadastrar</a>
+                <a class="botao-preenchido" href="./login.html?modo=login">Entrar</a>
             </div>
+        </header>
 
-            <button class="menu-button" type="button" aria-label="Abrir menu"> <!-- Botão para abrir o menu em telas menores-->
-                <img src="assets/images/menu_icon.png" alt="Menu" class="menu-icon"> <!-- pessoal do back me perdoem -->
-            </button>
-
-        </nav>
-    </header>
-
-    <main>
-
-        <section class="banner1"> <!-- Primeiro Banner do site -->
-            <div>
-                <h1>
-                    O futuro da direção está aqui.
-                </h1> 
-
-                <p>Experimente a fusão definitiva de desempenho e tecnologia. Engenharia de precisão para um amanhã
-                    mais limpo e inteligente.
-                </p>
-
-                <a href="" target="_blank" class="banner1-explorar"> <button>Explorar Agora</button> </a>
-                <a href="" target="_blank" class="banner1-saibamais"> <button>Saiba Mais</button></a>
-            </div>
-
-            <img src="assets/images/filhofolhas.jpg" alt="">
-
-        </section>
-
-
-        <section id="stock" class="stock"> <!-- Seção de serviços -->
-            <div id="estoque">Estoque</div>
-            
-            <h2>Nossa Vitrine de Destaques</h2>
-
-            <a href="">Ver Tudo ➞</a>
-
-            <div class="stock_cards">
-                <div class="stock_car_1">
-
-                    <img src="assets/images/chevrolet.jpg" alt="Serviços CarWise">
-                    <p class="car_name">Chevrolet Onix</p>
-                    <p class="car_price">A partir de $15,900</p>
-
-                    <button class="botao_add" type="button">
-                        +
-                    </button>
-                    
-                </div>
-
-                <div class="stock_car_2">
-
-                    <img src="assets/images/hyundai.jpg" alt="Serviços CarWise">
-                    <p class="car_name">Hyundai HB20</p>
-                    <p class="car_price">A partir de $14,500</p>
-
-                    <button class="botao_add" type="button">
-                        +
-                    </button>
-
-                </div>
-
-                <div class="stock_car_3">
-
-                    <img src="assets/images/fiat.jpg" alt="Serviços CarWise">
-                    <p class="car_name">Fiat Argo</p>
-                    <p class="car_price">A partir de $13,200</p>
-
-                    <button class="botao_add" type="button">
-                        +
-                    </button>
-
-                </div>
-            </div>
-        </section>
-
-        <section id="wiseia" class="wiseAi"> <!-- Seção Wise IA -->
-
-            <div id="phone">
-                <div class="app_header">
-                    <div class="menu_icon">
-                        <img src="assets/images/menu_icon.png" alt="">
+        <main class="conteudo-principal">
+            <section class="secao-hero">
+                <div class="hero-grade">
+                    <div class="hero-texto">
+                        <div class="hero-titulo-grupo">
+                            <h1 class="hero-titulo">Escolhido com inteligência. Cuidado com excelência</h1>
+                            <p class="hero-descricao">
+                                Muito mais que uma concessionária. Um ecossistema onde a Inteligência Artificial entende
+                                a sua vida para indicar o carro certo, e nossa rede parceira garante que ele continue
+                                impecável.
+                            </p>
+                        </div>
+                        <div class="hero-botoes">
+                            <a class="botao-primario" href="./catalogo.html">Encontrar meu carro</a>
+                            <a class="botao-secundario" href="./planos.html">Clube CarWise</a>
+                        </div>
                     </div>
-                    <h1>CarWise</h1>
-                    <div id="icon_container">
-                        <img src="assets/images/rbt.jpg" alt="">
+                    <div class="hero-imagem-wrapper">
+                        <div class="hero-imagem-brilho"></div>
+                        <img class="hero-imagem sombra-suave" alt="Veículo elétrico Nova"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsk7rNS2vT4O5P1-wifU6MIE7KsaYtFlTNgONeALCXImi2wP2ZohDcOHAnGOQr_d4vERyBmkpm6asRkwUfhLDvypvXDojhVxwCw8_JrF_bmqsTyZzS64ZVNaO1jREbYWYUhjMG5f4OdSnSsvBrUVi0Du5ZHWCciFicefY6N_srs5P4zZHAqIcCgJJmX4QWAyUj6IxPdhsqkX0F0U4ocjIX25e-R17sTcZBzT6xNiRRsZ4Is4FACsE2pA">
                     </div>
                 </div>
+            </section>
 
-                <div id="chat">
-                    <div id="msg1">Acendeu uma luz amarela de
-                    injeção e o carro falhou levemente.</div>
+            <section class="secao-vitrine">
+                <div class="vitrine-container">
+                    <div class="vitrine-cabecalho">
+                        <div>
+                            <p class="vitrine-etiqueta">CATÁLOGO</p>
+                            <h2 class="vitrine-titulo">Nossa Vitrine de Destaques</h2>
+                        </div>
+                        <a class="vitrine-link" href="#">
+                            Ver tudo <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
+                    </div>
+                    <div class="vitrine-grade">
+                        <div class="cartao-veiculo cartao-com-hover" role="link" tabindex="0"
+                            onclick="window.location.href='./catalogo.html'"
+                            onkeydown="if (event.key === 'Enter' || event.key === ' ') window.location.href='./catalogo.html'">
+                            <div class="cartao-veiculo-imagem">
+                                <img alt="Chevrolet Onix"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7Dk3VbpcvfFgGXc6KEJMd4qvUsovzUexZ292Zq6d1Y0PAcocVAYvt1Z4Lz2V16c5jdEgSiOsFh8w_wEhQosg3LpPy9ulHsU6iV8AnfhWs528waxbN22z1pVXN1jlrAZgZ1BC04-5PqB7nL_4xdsHkryxkWKLrYNCSwvOdTKdgPnawBz3M_YZvUM3oLxl9qcWXK4f1yiviz8v_3F7XtM1MhAJ9c4-XI0aE20E1hUUO8DNUSNJAV4Wqug">
+                            </div>
+                            <div class="cartao-veiculo-rodape">
+                                <div>
+                                    <h3 class="cartao-veiculo-nome">Chevrolet Onix</h3>
+                                    <p class="cartao-veiculo-preco">A partir de R$15.900</p>
+                                </div>
+                                <button class="cartao-veiculo-botao">
+                                    <span class="material-symbols-outlined">add</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="cartao-veiculo cartao-com-hover" role="link" tabindex="0"
+                            onclick="window.location.href='./catalogo.html'"
+                            onkeydown="if (event.key === 'Enter' || event.key === ' ') window.location.href='./catalogo.html'">
+                            <div class="cartao-veiculo-imagem">
+                                <img alt="Hyundai HB20"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqYjN5LEDVv2Ysk69vVU-BmyyScY-4CQEpTVmR5YyFpK_2PaRFh3oVPgl77pf8ZVfDo2O1smEgG6M8xmQ-5G_AfJcokORMoW6LDSpo2-tPF_l6XzEGlyxRNSWP08tnMIpzpNWjD2XOMe6PyFny9yld5Ysq5YjkQpgEf04Ynr8actiCOFX8UmGVbvC8-ReY_cq9NlCzzucmI0kJpDDK147yLDLUvr_e-jeV5tR6dhbWCNLnNZyCwQmHDg">
+                            </div>
+                            <div class="cartao-veiculo-rodape">
+                                <div>
+                                    <h3 class="cartao-veiculo-nome">Hyundai HB20</h3>
+                                    <p class="cartao-veiculo-preco">A partir de R$14.500</p>
+                                </div>
+                                <button class="cartao-veiculo-botao">
+                                    <span class="material-symbols-outlined">add</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="cartao-veiculo cartao-com-hover" role="link" tabindex="0"
+                            onclick="window.location.href='./catalogo.html'"
+                            onkeydown="if (event.key === 'Enter' || event.key === ' ') window.location.href='./catalogo.html'">
+                            <div class="cartao-veiculo-imagem">
+                                <img alt="Fiat Argo"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBYejFHUV911uz4ENc-PIhWg1WVAmKZBP_GSVK_CwD50hbxDT3GHXLLXxGDNNp9PvzVwZuksC0F9t3gwVOCAwxtNmIB1dtMq4Eqfjb7AbEpQcwcFUmwybF2mJ-0fm9fO9vDQ3G4o06shJlVXlHW_IAUXALmYdrsqFDQcMu3bawhsniP2b8NGTba21P-vor5_lq2f-tF9zzE5kAAjbXoh_gXkuVc83eM1XE6P-Kzqx7xqES5Q6-pgAkLA">
+                            </div>
+                            <div class="cartao-veiculo-rodape">
+                                <div>
+                                    <h3 class="cartao-veiculo-nome">Fiat Argo</h3>
+                                    <p class="cartao-veiculo-preco">A partir de R$13.200</p>
+                                </div>
+                                <button class="cartao-veiculo-botao">
+                                    <span class="material-symbols-outlined">add</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="secao-inovacao">
+                <div class="inovacao-grade">
+                    <div class="inovacao-mockup-coluna">
+                        <div class="mockup-celular">
+                            <div class="mockup-tela">
+                                <div class="mockup-cabecalho">
+                                    <span class="material-symbols-outlined">menu</span>
+                                    <span class="mockup-titulo">CarWise IA</span>
+                                    <div class="mockup-icone-ia">
+                                        <span class="material-symbols-outlined"
+                                            style="font-size:14px; color:var(--cor-azul-apple);">smart_toy</span>
+                                    </div>
+                                </div>
+                                <div class="mockup-chat">
+                                    <div class="balao-usuario">
+                                        <p>Acendeu uma luz amarela de injeção e o carro falhou levemente.</p>
+                                    </div>
+                                    <div class="balao-ia">
+                                        <p>Isso pode indicar um problema nas velas ou combustível adulterado. Como
+                                            assinante do Clube, já localizei a oficina premium credenciada mais
+                                            próxima para você (2.4km).</p>
+                                    </div>
+                                    <div class="mockup-anexo">
+                                        <div class="mockup-anexo-icone"></div>
+                                        <div class="mockup-anexo-linha"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mockup-barra-inferior"></div>
+                        </div>
+                    </div>
+                    <div class="inovacao-conteudo">
+                        <p class="inovacao-etiqueta">IA INTELIGENTE</p>
+                        <h2 class="inovacao-titulo">Seu carro avisa.<br>Nossa IA resolve.</h2>
+                        <p class="inovacao-descricao">
+                            Conheça seu novo copiloto. Nossa integração avançada de IA aprende seus hábitos de
+                            direção, prevê necessidades de manutenção e otimiza cada rota para máxima eficiência.
+                            Experimente um veículo que não apenas dirige, mas entende.
+                        </p>
+                        <ul class="lista-recursos">
+                            <li class="item-recurso">
+                                <span class="material-symbols-outlined">check_circle</span>
+                                <span><b>Match Perfeito:</b> Sugestões de veículos baseadas no seu uso diário.</span>
+                            </li>
+                            <li class="item-recurso">
+                                <span class="material-symbols-outlined">check_circle</span>
+                                <span><b>Diagnóstico Simples:</b> Tradução de alertas e laudos sem "mecaniquês".</span>
+                            </li>
+                            <li class="item-recurso">
+                                <span class="material-symbols-outlined">check_circle</span>
+                                <span><b>Integração com o Clube:</b> Agendamento automático na oficina certa.</span>
+                            </li>
+                        </ul>
+                        <a class="link-descubra" href="./planos.html#inteligencia">
+                            Descubra as Funções de IA
+                            <span class="material-symbols-outlined">chevron_right</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
 
-                    <div id="msg2">Isso pode indicar um problema nas velas ou combustível 
-                    adulterado. Como assinante do Clube, já localizei a oficina
-                    premium credenciada mais próxima para você (2.4km).</div>
+        <footer class="rodape-principal">
+            <div class="container-rodape">
+                <div class="info-marca">
+                    <div class="logo-rodape">CarWise</div>
+                    <p>© 2024 CarWise Luxury Automotive. Todos os direitos reservados.</p>
                 </div>
 
-                <div id="fake_input">
-                    <div id="gray_button"></div>
-                    <div id="line"></div>
+                <div class="links-rodape">
+                    <a href="#" class="link-rodape">Sobre Nós</a>
+                    <a href="#" class="link-rodape">Termos de Uso</a>
+                    <a href="#" class="link-rodape">Privacidade</a>
+                    <a href="#" class="link-rodape">Ajuda</a>
                 </div>
             </div>
-            
-            <div id="container_text">
-                <p>IA INTELIGENTE</p>
-                <h3>Seu carro fala, Nós traduzimos.</h3>
-                <p>Conheça seu novo copiloto. Nossa integração avançada de IA
-                aprende seus hábitos de direção, prevê necessidades de
-                manutenção e otimiza cada rota para máxima eficiência.
-                Experimente um veículo que não apenas dirige, mas entende.</p>
-
-                <div id="container_checks">
-                    <img src="assets/images/check.png" alt="">
-                    <p>Gestão Preditiva de Energia</p>
-
-                    <img src="assets/images/check.png" alt="">
-                    <p>Interação por Voz Natural</p>
-
-                    <img src="assets/images/check.png" alt="">
-                    <p>Integração Perfeita com Casa Inteligente</p>
-
-                    <a href="">Descubra as Funções de IA</a>
-                </div>
-            </div>
-        </section>
-
-        <div class="linha-horizontal"></div>
-
-    </main>
-
-     <footer> <!-- Rodapé do site -->
-            <p class="logotipo">CarWise</p>
-            <p>© 2026 CarWise Tech Automative. Todos os direitos reservados.</p>
-
-            <ul id="last_links">
-                <li><a href="">Sobre Nós</a></li>
-                <li><a href="">Termos de Uso</a></li>
-                <li><a href="">Privacidade</a></li>
-                <li><a href="">Ajuda</a></li>
-            </ul>
-
         </footer>
-        
+    </div>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const cabecalho = document.querySelector('.cabecalho');
+            if (window.scrollY > 20) {
+                cabecalho.classList.add('sombra-suave');
+            } else {
+                cabecalho.classList.remove('sombra-suave');
+            }
+        });
+
+        const opcoesObservador = { threshold: 0.1 };
+
+        const observador = new IntersectionObserver((entradas) => {
+            entradas.forEach(entrada => {
+                if (entrada.isIntersecting) {
+                    entrada.target.style.opacity = '1';
+                    entrada.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, opcoesObservador);
+
+        document.querySelectorAll('.cartao-com-hover').forEach(cartao => {
+            cartao.style.opacity = '0';
+            cartao.style.transform = 'translateY(2rem)';
+            observador.observe(cartao);
+        });
+    </script>
 </body>
+
 </html>
