@@ -2,31 +2,20 @@
  * ============================================================================
  * ARQUIVO: perfil.js
  * OBJETIVO: Gerenciar a sessão, carregamento de dados, edição de perfil,
- *           upload e compressão de foto de perfil e fluxo seguro de troca de senha.
+ *           upload e compressão de foto de perfil, busca automática de
+ *           endereço por CEP (API ViaCEP) e fluxo seguro de troca de senha.
  * ARQUITETURA: 100% Front-end (Vanilla JavaScript + LocalStorage + API Web Crypto)
- *
- * CORREÇÕES APLICADAS:
- * 1. O botão "btnSalvar" tinha DOIS addEventListener('click', ...) diferentes
- *    (um sem validação na seção 4, outro com validação na seção 6). Como
- *    addEventListener empilha handlers em vez de substituir, os dois rodavam
- *    no mesmo clique: o primeiro salvava sem validar (permitindo e-mail
- *    inválido) e o segundo validava e disparava um segundo alert. Agora existe
- *    apenas UM handler para btnSalvar, com validação.
- * 2. A lógica que estava duplicada dentro do segundo handler de btnSalvar
- *    (rotulada como "PASSO 2: valida a nova senha... hash SHA-256") não fazia
- *    nada com senha de fato — era uma cópia do salvamento de dados pessoais.
- *    Isso foi movido para um handler próprio do btnSalvarSenha, que agora
- *    realmente valida e salva a nova senha com hash SHA-256.
  * ============================================================================
  */
 
 // Constante global com o caminho da tela de login para redirecionamento
 const LOGIN_URL = "../public/login.html";
 
+// Endpoint da API pública ViaCEP (gratuita, sem chave, requisição GET)
+const VIACEP_URL = "https://viacep.com.br/ws";
+
 /**
  * 1. VERIFICAÇÃO DE SEGURANÇA DA SESSÃO
- * Se o usuário tentar acessar a página de perfil digitando a URL direto sem estar
- * logado (localStorage "logado" !== "true"), ele é chutado de volta para o login.
  */
 if (localStorage.getItem("logado") !== "true") {
     window.location.replace(LOGIN_URL);
@@ -34,15 +23,10 @@ if (localStorage.getItem("logado") !== "true") {
 
 /**
  * ============================================================================
- * 2. FUNÇÕES AUXILIARES DE CRIPTOGRAFIA E VALIDAÇÃO DE SENHA
+ * 2. FUNÇÕES AUXILIARES DE CRIPTOGRAFIA E VALIDAÇÃO
  * ============================================================================
  */
 
-/**
- * Calcula a força da senha baseada em critérios de complexidade (tamanho, maiúsculas, números, símbolos).
- * @param {string} senha - A senha digitada pelo usuário.
- * @returns {number} Um número de 0 a 4 indicando o nível de força.
- */
 function calcularForcaSenha(senha) {
     let forca = 0;
     if (senha.length === 0) return 0;
@@ -53,11 +37,6 @@ function calcularForcaSenha(senha) {
     return forca;
 }
 
-/**
- * Valida o formato de um e-mail com regex + checagens extras de pontos duplicados/mal posicionados.
- * @param {string} email
- * @returns {boolean}
- */
 function verificarFormatoEmail(email) {
     const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (email.includes("..") || email.includes("@.") || email.includes(".@")) {
@@ -66,12 +45,6 @@ function verificarFormatoEmail(email) {
     return regexEmail.test(email);
 }
 
-/**
- * Gera um hash SHA-256 seguro utilizando a API nativa do navegador (Crypto Subtle).
- * Usado para nunca salvar senhas em texto puro no localStorage.
- * @param {string} senha - Senha em texto puro.
- * @returns {Promise<string>} O hash hexadecimal resultante.
- */
 async function gerarHashSenha(senha) {
     const encoder = new TextEncoder();
     const data = encoder.encode(senha);
@@ -82,7 +55,7 @@ async function gerarHashSenha(senha) {
 
 /**
  * ============================================================================
- * 3. INICIALIZAÇÃO DA PÁGINA (Disparado quando o HTML termina de carregar)
+ * 3. INICIALIZAÇÃO DA PÁGINA
  * ============================================================================
  */
 document.addEventListener("DOMContentLoaded", () => {
@@ -98,10 +71,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputEmail = document.getElementById("input-email");
     const inputTelefone = document.getElementById("input-telefone");
     const inputCpf = document.getElementById("input-cpf");
+
+    // Inputs do formulário de Endereço
     const inputCep = document.getElementById("input-cep");
     const inputRua = document.getElementById("input-rua");
+    const inputBairro = document.getElementById("input-bairro");
     const inputNumero = document.getElementById("input-numero");
     const inputComplemento = document.getElementById("input-complemento");
+    const inputCidade = document.getElementById("input-cidade");
+    const inputEstado = document.getElementById("input-estado");
+    const btnBuscarCep = document.getElementById("btn-buscar-cep");
 
     // Máscara para aceitar apenas letras no Nome
     if (inputNome) {
@@ -128,11 +107,27 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Máscara dinâmica para o CEP (00000-000)
+    if (inputCep) {
+        inputCep.addEventListener("input", function () {
+            let v = this.value.replace(/\D/g, "");
+            if (v.length > 8) v = v.slice(0, 8);
+            if (v.length > 5) {
+                this.value = v.replace(/^(\d{5})(\d{0,3})$/, "$1-$2");
+            } else {
+                this.value = v;
+            }
+        });
+    }
+
     // Botões de ação do Perfil
     const btnEditar = document.getElementById("btn-editar");
     const btnCancelar = document.getElementById("btn-cancelar");
     const btnSalvar = document.getElementById("btn-salvar");
-    const inputsEditaveis = [inputNome, inputEmail, inputTelefone, inputCep, inputRua, inputNumero, inputComplemento];
+    const inputsEditaveis = [
+        inputNome, inputEmail, inputTelefone,
+        inputCep, inputRua, inputBairro, inputNumero, inputComplemento, inputCidade, inputEstado
+    ];
 
     // --- MAPEAMENTO DOS ELEMENTOS DE FOTO DE PERFIL ---
     const inputFoto = document.getElementById("input-foto-perfil");
@@ -165,47 +160,37 @@ document.addEventListener("DOMContentLoaded", () => {
      * 4. LÓGICA DE CARREGAMENTO E EDIÇÃO DE DADOS PESSOAIS
      * ========================================================================
      */
-
-    /**
-     * Lê o usuário logado atualmente no localStorage e popula todos os campos da tela.
-     */
     function carregarDadosNaTela() {
         const usuarioSalvo = localStorage.getItem("usuarioLogado");
         if (usuarioSalvo) {
             const usuario = JSON.parse(usuarioSalvo);
 
-            // Desenho SVG padrão (bonequinho cinza neutro) caso o usuário não tenha foto
             const FOTO_PADRAO = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a0aabf'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E";
 
-            // Preenche textos do menu e cabeçalho
             if (spanNomeMenu && usuario.nome) spanNomeMenu.textContent = usuario.nome;
             if (h3NomePerfil && usuario.nome) h3NomePerfil.textContent = usuario.nome;
             if (spanPlanoMenu && usuario.plano) spanPlanoMenu.textContent = usuario.plano;
             if (pDataMembro && usuario.dataCriacao) pDataMembro.textContent = `Membro desde ${usuario.dataCriacao}`;
 
-            // Define a foto de perfil (se houver salva, usa ela; senão, usa o bonequinho padrão)
             if (imgAvatarPerfil) imgAvatarPerfil.src = usuario.foto ? usuario.foto : FOTO_PADRAO;
             if (imgAvatarMenu) imgAvatarMenu.src = usuario.foto ? usuario.foto : FOTO_PADRAO;
 
-            // Preenche os campos do formulário
             if (inputNome) inputNome.value = usuario.nome || "";
             if (inputEmail) inputEmail.value = usuario.email || "";
             if (inputTelefone) inputTelefone.value = usuario.telefone || "";
             if (inputCpf) inputCpf.value = usuario.cpf || "";
             if (inputCep) inputCep.value = usuario.cep || "";
             if (inputRua) inputRua.value = usuario.rua || "";
+            if (inputBairro) inputBairro.value = usuario.bairro || "";
             if (inputNumero) inputNumero.value = usuario.numero || "";
             if (inputComplemento) inputComplemento.value = usuario.complemento || "";
+            if (inputCidade) inputCidade.value = usuario.cidade || "";
+            if (inputEstado) inputEstado.value = usuario.estado || "";
         }
     }
 
-    // Executa a carga dos dados assim que a página abre
     carregarDadosNaTela();
 
-    /**
-     * Alterna os inputs entre modo leitura (readonly) e modo edição.
-     * @param {boolean} editando - True para destravar os inputs, False para travar.
-     */
     function alternarModoEdicao(editando) {
         inputsEditaveis.forEach(input => {
             if (input) {
@@ -229,19 +214,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Eventos dos botões de edição de perfil
     if (btnEditar) btnEditar.addEventListener("click", () => alternarModoEdicao(true));
     if (btnCancelar) {
         btnCancelar.addEventListener("click", () => {
             alternarModoEdicao(false);
-            carregarDadosNaTela(); // Descarta as alterações e volta o dado original
+            carregarDadosNaTela();
         });
     }
 
     /**
-     * ÚNICO handler de salvamento dos Dados Pessoais.
-     * Valida campos obrigatórios, formato de e-mail, tamanho do telefone e
-     * duplicidade de e-mail ANTES de gravar qualquer coisa no localStorage.
+     * ÚNICO handler de salvamento dos Dados Pessoais + Endereço.
      */
     if (btnSalvar) {
         btnSalvar.addEventListener("click", () => {
@@ -250,8 +232,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const telefone = inputTelefone.value;
             const cep = inputCep.value;
             const rua = inputRua.value;
+            const bairro = inputBairro.value;
             const numero = inputNumero.value;
             const complemento = inputComplemento.value;
+            const cidade = inputCidade.value;
+            const estado = inputEstado.value;
 
             const telefoneNumeros = telefone.replace(/\D/g, "");
 
@@ -286,19 +271,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
 
-            // Tudo certo! Atualiza os dados no objeto da sessão
             usuarioLogado.nome = nome;
             usuarioLogado.email = email;
             usuarioLogado.telefone = telefone;
             usuarioLogado.cep = cep;
             usuarioLogado.rua = rua;
+            usuarioLogado.bairro = bairro;
             usuarioLogado.numero = numero;
             usuarioLogado.complemento = complemento;
+            usuarioLogado.cidade = cidade;
+            usuarioLogado.estado = estado;
 
-            // Salva na sessão atual
             localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
 
-            // Atualiza também no banco de dados geral (array "usuarios")
             const index = usuariosCadastrados.findIndex(u => u.email === emailAntigo);
             if (index !== -1) {
                 usuariosCadastrados[index] = { ...usuariosCadastrados[index], ...usuarioLogado };
@@ -313,15 +298,86 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /**
      * ========================================================================
-     * 5. LÓGICA DE UPLOAD E COMPRESSÃO DA FOTO DE PERFIL (Base64 + Canvas)
+     * 5. BUSCA DE ENDEREÇO POR CEP (API ViaCEP)
      * ========================================================================
      */
 
-    // Faz os botões visíveis acionarem o input de arquivo invisível
+    /**
+     * Consulta a API ViaCEP (GET) e preenche automaticamente rua, bairro,
+     * cidade e estado. Só funciona com o formulário em modo de edição,
+     * já que os campos de endereço ficam readonly fora dele.
+     */
+    async function buscarEnderecoPorCep() {
+        if (!inputCep || inputCep.hasAttribute("readonly")) {
+            alert("Clique em 'Editar Perfil' antes de buscar o CEP.");
+            return;
+        }
+
+        const cepLimpo = inputCep.value.replace(/\D/g, "");
+
+        if (cepLimpo.length !== 8) {
+            alert("Digite um CEP válido com 8 dígitos.");
+            return;
+        }
+
+        const iconeOriginal = btnBuscarCep.innerHTML;
+        btnBuscarCep.disabled = true;
+        btnBuscarCep.innerHTML = '<span class="material-symbols-outlined girando">progress_activity</span>';
+
+        try {
+            const resposta = await fetch(`${VIACEP_URL}/${cepLimpo}/json/`);
+
+            if (!resposta.ok) {
+                throw new Error("Falha na comunicação com o serviço de CEP.");
+            }
+
+            const dados = await resposta.json();
+
+            // A ViaCEP retorna { erro: true } quando o CEP não existe
+            if (dados.erro) {
+                alert("CEP não encontrado. Verifique o número digitado.");
+                return;
+            }
+
+            if (inputRua) inputRua.value = dados.logradouro || "";
+            if (inputBairro) inputBairro.value = dados.bairro || "";
+            if (inputCidade) inputCidade.value = dados.localidade || "";
+            if (inputEstado) inputEstado.value = dados.uf || "";
+
+            // Leva o foco para o número, já que a ViaCEP não retorna isso
+            if (inputNumero) inputNumero.focus();
+
+        } catch (erro) {
+            console.error("Erro ao buscar CEP:", erro);
+            alert("Não foi possível buscar o CEP agora. Verifique sua conexão e tente novamente.");
+        } finally {
+            btnBuscarCep.disabled = false;
+            btnBuscarCep.innerHTML = iconeOriginal;
+        }
+    }
+
+    if (btnBuscarCep) {
+        btnBuscarCep.addEventListener("click", buscarEnderecoPorCep);
+    }
+
+    // Busca automática ao sair do campo, assim que o CEP tiver 8 dígitos
+    if (inputCep) {
+        inputCep.addEventListener("blur", () => {
+            const cepLimpo = inputCep.value.replace(/\D/g, "");
+            if (cepLimpo.length === 8 && !inputCep.hasAttribute("readonly")) {
+                buscarEnderecoPorCep();
+            }
+        });
+    }
+
+    /**
+     * ========================================================================
+     * 6. LÓGICA DE UPLOAD E COMPRESSÃO DA FOTO DE PERFIL (Base64 + Canvas)
+     * ========================================================================
+     */
     if (btnAlterarFoto && inputFoto) btnAlterarFoto.addEventListener("click", () => inputFoto.click());
     if (containerAvatar && inputFoto) containerAvatar.addEventListener("click", () => inputFoto.click());
 
-    // Escuta quando o usuário escolhe uma nova imagem na janela do computador
     if (inputFoto) {
         inputFoto.addEventListener("change", (event) => {
             const arquivo = event.target.files[0];
@@ -334,8 +390,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     img.src = e.target.result;
 
                     img.onload = function () {
-                        // Utiliza um Canvas invisível para redimensionar a imagem (máximo 300x300px)
-                        // Isso evita que fotos pesadas de celular estourem o limite de 5MB do localStorage.
                         const canvas = document.createElement("canvas");
                         const tamanhoMax = 300;
                         let largura = img.width;
@@ -358,19 +412,15 @@ document.addEventListener("DOMContentLoaded", () => {
                         const ctx = canvas.getContext("2d");
                         ctx.drawImage(img, 0, 0, largura, altura);
 
-                        // Converte a imagem comprimida em uma string de texto Base64 (qualidade 70%)
                         const fotoBase64 = canvas.toDataURL("image/jpeg", 0.7);
 
-                        // 1. Atualiza a imagem na tela imediatamente
                         if (imgAvatarPerfil) imgAvatarPerfil.src = fotoBase64;
                         if (imgAvatarMenu) imgAvatarMenu.src = fotoBase64;
 
-                        // 2. Salva a foto dentro da sessão do usuário logado
                         const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
                         usuarioLogado.foto = fotoBase64;
                         localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
 
-                        // 3. Atualiza a foto dentro do array geral de cadastros
                         let usuariosCadastrados = JSON.parse(localStorage.getItem("usuarios")) || [];
                         const index = usuariosCadastrados.findIndex(u => u.email === usuarioLogado.email);
                         if (index !== -1) {
@@ -388,12 +438,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /**
      * ========================================================================
-     * 6. LÓGICA DE ALTERAÇÃO DE SENHA (Fluxo Seguro em 2 Passos)
+     * 7. LÓGICA DE ALTERAÇÃO DE SENHA (Fluxo Seguro em 2 Passos)
      * ========================================================================
-     */
-
-    /**
-     * Reseta os campos de senha e fecha o formulário, voltando ao estado inicial.
      */
     function resetarFormularioSenha() {
         inputSenhaAtual.value = "";
@@ -408,7 +454,6 @@ document.addEventListener("DOMContentLoaded", () => {
         blocoInfoSenha.style.display = "flex";
     }
 
-    // Abre o formulário de alteração de senha ao clicar no botão
     if (btnAbrirTrocaSenha) {
         btnAbrirTrocaSenha.addEventListener("click", () => {
             blocoInfoSenha.style.display = "none";
@@ -417,14 +462,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Botões de cancelar fecham o formulário de senha
     if (btnCancelarPasso1) btnCancelarPasso1.addEventListener("click", resetarFormularioSenha);
     if (btnCancelarPasso2) btnCancelarPasso2.addEventListener("click", resetarFormularioSenha);
 
-    /**
-     * PASSO 1: O usuário digita a senha atual. O sistema faz o hash dela
-     * e compara com o hash salvo no localStorage para provar que é ele mesmo.
-     */
     if (btnVerificarSenha) {
         btnVerificarSenha.addEventListener("click", async () => {
             const atual = inputSenhaAtual.value;
@@ -436,22 +476,17 @@ document.addEventListener("DOMContentLoaded", () => {
             const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
             const hashSenhaAtualDigitada = await gerarHashSenha(atual);
 
-            // Se a senha atual estiver incorreta, bloqueia o fluxo
             if (hashSenhaAtualDigitada !== usuarioLogado.senha) {
                 alert("A senha atual informada está incorreta.");
                 return;
             }
 
-            // Se estiver correta, esconde o Passo 1 e abre o Passo 2 (Nova Senha)
             passo1Senha.style.display = "none";
             passo2Senha.style.display = "block";
             inputSenhaNova.focus();
         });
     }
 
-    /**
-     * Lógica do botão "olhinho" para alternar entre mostrar e esconder a senha digitada.
-     */
     const botoesMostrarSenha = document.querySelectorAll('.botao-mostrar-senha');
     botoesMostrarSenha.forEach(botao => {
         botao.addEventListener('click', function () {
@@ -468,9 +503,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    /**
-     * Termômetro visual dinâmico de força da senha nova.
-     */
     if (inputSenhaNova && strengthBar && strengthText) {
         inputSenhaNova.addEventListener("input", function () {
             const senha = this.value;
@@ -499,36 +531,27 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /**
-     * PASSO 2: Valida a nova senha (obrigatória, força mínima, confirmação
-     * igual e diferente da senha atual), gera o hash SHA-256 e persiste tanto
-     * na sessão ("usuarioLogado") quanto no array geral ("usuarios").
-     */
     if (btnSalvarSenha) {
         btnSalvarSenha.addEventListener("click", async () => {
             const senhaAtual = inputSenhaAtual.value;
             const senhaNova = inputSenhaNova.value;
             const confirmacao = inputConfSenhaNova.value;
 
-            // 1. Campos obrigatórios
             if (!senhaNova || !confirmacao) {
                 alert("Preencha a nova senha e a confirmação.");
                 return;
             }
 
-            // 2. Confirmação precisa bater com a nova senha
             if (senhaNova !== confirmacao) {
                 alert("A confirmação não coincide com a nova senha.");
                 return;
             }
 
-            // 3. Força mínima aceitável (evita senhas fracas demais)
             if (calcularForcaSenha(senhaNova) < 2) {
                 alert("A nova senha é muito fraca. Use letras maiúsculas, minúsculas, números ou símbolos.");
                 return;
             }
 
-            // 4. A nova senha não pode ser igual à atual
             if (senhaNova === senhaAtual) {
                 alert("A nova senha deve ser diferente da senha atual.");
                 return;
@@ -537,11 +560,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
             const hashSenhaNova = await gerarHashSenha(senhaNova);
 
-            // Atualiza a senha na sessão atual
             usuarioLogado.senha = hashSenhaNova;
             localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
 
-            // Atualiza também no banco de dados geral (array "usuarios")
             let usuariosCadastrados = JSON.parse(localStorage.getItem("usuarios")) || [];
             const index = usuariosCadastrados.findIndex(u => u.email === usuarioLogado.email);
             if (index !== -1) {
@@ -556,7 +577,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /**
      * ========================================================================
-     * 7. LÓGICA DE LOGOUT (Sair da conta)
+     * 8. LÓGICA DE LOGOUT (Sair da conta)
      * ========================================================================
      */
     const btnSair = document.getElementById("btn-sair");

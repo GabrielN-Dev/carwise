@@ -354,17 +354,34 @@ a {
   }
 }
 
+/* =========================================
+   GRID DE ENDEREÇO (com CEP, bairro, cidade, estado)
+========================================= */
 .grade-inputs-endereco {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 16px;
 }
-.cep, .numero { grid-column: span 12; }
-.rua, .complemento { grid-column: span 12; }
+
+/* Mobile: tudo em coluna única */
+.cep,
+.rua,
+.bairro,
+.numero,
+.complemento,
+.cidade,
+.estado {
+  grid-column: span 12;
+}
 
 @media (min-width: 768px) {
-  .cep, .numero { grid-column: span 4; }
-  .rua, .complemento { grid-column: span 8; }
+  .cep { grid-column: span 3; }
+  .rua { grid-column: span 9; }
+  .bairro { grid-column: span 5; }
+  .numero { grid-column: span 3; }
+  .complemento { grid-column: span 4; }
+  .cidade { grid-column: span 8; }
+  .estado { grid-column: span 4; }
 }
 
 .grupo-input {
@@ -407,6 +424,50 @@ a {
   font-size: 10px;
   color: var(--cor-texto-mutado);
   margin-top: 4px;
+}
+
+/* =========================================
+   BUSCA DE CEP
+========================================= */
+.container-cep {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
+.container-cep .campo-entrada {
+  flex: 1;
+  min-width: 0;
+}
+
+.botao-buscar-cep {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  border: 1px solid var(--borda-padrao);
+  border-radius: 8px;
+  background-color: var(--cor-superficie-inativa);
+  color: var(--cor-texto-secundario);
+}
+.botao-buscar-cep:hover:not(:disabled) {
+  background-color: var(--azul-primario);
+  color: var(--cor-superficie);
+  border-color: var(--azul-primario);
+}
+.botao-buscar-cep:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Ícone girando enquanto busca o CEP */
+.girando {
+  display: inline-flex;
+  animation: girar 0.9s linear infinite;
+}
+@keyframes girar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 /* =========================================
