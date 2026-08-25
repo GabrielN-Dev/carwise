@@ -205,7 +205,7 @@ body.corpo-app {
 .balao-ia {
   background-color: var(--cor-superficie-variante);
   color: var(--cor-texto-principal);
-  padding: 16px;
+  padding: 25px;
   border-radius: 16px 16px 16px 2px;
   border: 1px solid var(--borda-suave);
   font-size: 14px;
