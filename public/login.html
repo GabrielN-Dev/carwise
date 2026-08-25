@@ -158,7 +158,7 @@
             const formularioLogin = document.querySelector('#formulario-login');
             const formularioCadastro = document.querySelector('#formulario-cadastro');
 
-            function alternarFormulario(modoLogin) {
+            window.alternarFormulario = function alternarFormulario(modoLogin) {
                 abaLogin.classList.toggle('aba-ativa', modoLogin);
                 abaLogin.classList.toggle('aba-inativa', !modoLogin);
                 abaCadastro.classList.toggle('aba-ativa', !modoLogin);

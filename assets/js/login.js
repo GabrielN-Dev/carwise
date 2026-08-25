@@ -187,6 +187,7 @@ if (formCadas) {
 
     alert("Cadastro realizado com sucesso!");
     formCadas.reset();
+    window.alternarFormulario(true); 
 
     if (strengthBar && strengthText) {
       strengthBar.style.width = "0%";
